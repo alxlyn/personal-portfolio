@@ -1,0 +1,19 @@
+.footer {
+  padding: 24px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.link {
+  color: var(--accent);
+  transition: opacity 0.2s;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
