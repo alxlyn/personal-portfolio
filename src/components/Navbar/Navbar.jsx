@@ -5,6 +5,7 @@ import styles from './Navbar.module.css';
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -44,6 +45,17 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href={personal.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.link} ${styles.resumeLink}`}
+              onClick={closeMenu}
+            >
+              Resume
+            </a>
+          </li>
           <li>
             <a
               href={personal.github}

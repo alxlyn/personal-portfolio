@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <section id="contact" style={{ background: 'var(--bg-surface)' }}>
       <div className={`section fade-in-section ${styles.wrapper}`} ref={ref}>
-        <p className="section-label">04. Contact</p>
+        <p className="section-label">05. Contact</p>
         <h2 className={styles.heading}>
           Let&apos;s Work <span>Together</span>
         </h2>
@@ -22,6 +22,9 @@ export default function Contact() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
         </a>
+        <p className={styles.emailAddress}>
+          <a href={`mailto:${personal.email}`}>{personal.email}</a>
+        </p>
         <div className={styles.socials}>
           <a
             href={personal.github}

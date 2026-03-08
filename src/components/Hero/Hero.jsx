@@ -17,6 +17,14 @@ export default function Hero() {
           <a href="#contact" className="btn btn-outline">
             Contact Me
           </a>
+          <a
+            href={personal.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline"
+          >
+            Resume
+          </a>
         </div>
       </div>
     </section>
