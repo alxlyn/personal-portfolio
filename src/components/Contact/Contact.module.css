@@ -23,25 +23,10 @@
 }
 
 .emailBtn {
-  font-size: 1rem;
-  padding: 14px 32px;
-  margin-bottom: 16px;
-}
-
-.emailAddress {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-.emailAddress a {
-  color: var(--accent);
-  transition: opacity 0.2s;
-}
-
-.emailAddress a:hover {
-  opacity: 0.8;
+  font-size: 0.95rem;
+  padding: 14px 32px;
+  margin-bottom: 48px;
 }
 
 .socials {

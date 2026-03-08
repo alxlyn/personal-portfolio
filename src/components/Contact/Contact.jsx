@@ -17,14 +17,8 @@ export default function Contact() {
           Whether you have a project in mind or just want to say hi, my inbox is always open.
         </p>
         <a href={`mailto:${personal.email}`} className={`btn btn-primary ${styles.emailBtn}`}>
-          Say Hello
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-          </svg>
+          {personal.email}
         </a>
-        <p className={styles.emailAddress}>
-          <a href={`mailto:${personal.email}`}>{personal.email}</a>
-        </p>
         <div className={styles.socials}>
           <a
             href={personal.github}

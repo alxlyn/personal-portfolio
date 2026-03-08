@@ -61,7 +61,7 @@ export default function Navbar() {
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${styles.link} ${styles.githubLink}`}
+              className={styles.githubLink}
               onClick={closeMenu}
               aria-label="GitHub profile"
             >
