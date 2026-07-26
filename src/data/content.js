@@ -5,35 +5,53 @@
 
 export const personal = {
   name: 'Aleksei Lian',
-  role: 'CS Student · Backend Developer',
-  tagline: 'I build reliable systems and clean APIs.',
+  role: 'CS Student · Backend Engineer',
+  tagline: 'I build backend systems that make it to production — most recently a dating app shipped to TestFlight.',
   email: 'alekseilianv@gmail.com',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
+  x: 'https://x.com/_alxlyn',
   resume: '/resume.pdf',
 };
 
 export const about = {
   paragraphs: [
-    "I'm a CS student at York University (transferred from Carleton) focused on backend development. I like building systems that handle concurrent load without breaking — whether that's a URL shortener deployed to Cloud Run or a chess engine searching millions of positions.",
-    "Right now I'm working as a Founding Technical Contributor at Tanish, an early-stage startup where I debug production race conditions and help shape the backend architecture.",
-    "I'm looking for backend internship opportunities where I can contribute to real systems and learn from experienced engineers.",
+    "I'm a CS student at York University focused on backend engineering. I co-founded Tanish, a dating app for Central Asia, and built the whole product — a FastAPI/PostgreSQL backend with 2,200+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 6 languages.",
+    "Right now I'm building Mendy, an advice buddy that remembers you — FastAPI, async SQLAlchemy, and LLM-driven conversations with long-term memory.",
+    "I'm looking for backend internship opportunities (summer/fall 2026) where I can work on real systems with experienced engineers.",
   ],
   currentlyInto: [
-    'Distributed Systems & Concurrency',
-    'API Design & REST',
+    'FastAPI & async SQLAlchemy',
     'PostgreSQL & query optimization',
-    'GCP (Cloud Run, Cloud Build)',
-    'Docker & containerization',
+    'WebSockets & real-time systems',
+    'LLM-powered product features',
+    'Docker, CI/CD & cloud deploys',
   ],
 };
 
 export const projects = [
   {
+    title: 'Tanish — Dating App for Central Asia',
+    description:
+      'Co-founded and built the whole product: FastAPI + PostgreSQL backend, React Native iOS app on TestFlight, real-time WebSocket chat, AWS face-liveness identity verification, LLM compatibility scoring, and localization into 6 languages including human-translated Kyrgyz.',
+    tags: ['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'React Native', 'WebSockets', 'AWS'],
+    github: null,
+    featured: true,
+    metrics: ['2,200+ tests', 'Live on TestFlight', '6 languages'],
+  },
+  {
+    title: 'Mendy',
+    description:
+      'An advice buddy that remembers you. FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline.',
+    tags: ['Python', 'FastAPI', 'PostgreSQL', 'LLM'],
+    github: null,
+    status: 'In progress',
+  },
+  {
     title: 'URL Shortener',
     description:
-      'URL shortening service built with Flask and PostgreSQL. Handles concurrent requests safely, with RESTful APIs for redirection and link analytics. Deployed to Google Cloud Run with CI/CD.',
-    tags: ['Python', 'Flask', 'PostgreSQL', 'Docker', 'GCP'],
+      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes with zero collisions. Per-IP rate limiting with Redis, CI running 34 pytest integration tests against live Postgres, and CD to Cloud Run via Cloud Build.',
+    tags: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'GCP'],
     github: 'https://github.com/alxlyn/alex-url-shortener',
   },
   {
@@ -49,14 +67,14 @@ export const experience = [
   {
     company: 'Tanish',
     companyNote: 'Early-Stage Startup',
-    title: 'Founding Technical Contributor',
+    title: 'Co-Founder & Lead Backend Engineer',
     location: 'Remote',
     start: 'Jan 2026',
     end: 'Present',
     bullets: [
-      'Backend architecture and feature scoping for early product',
-      'Debugging production race conditions in concurrent middleware',
-      'Shaping technical direction alongside founding team',
+      'Built the full product: FastAPI/PostgreSQL backend with 2,200+ tests, JWT auth, real-time WebSocket chat, and a React Native iOS app shipped to TestFlight',
+      'Shipped AWS face-liveness identity verification and LLM-based compatibility scoring',
+      'Led technical delivery for 2 contracted engineers; enforced code standards via PR reviews',
     ],
   },
   {
@@ -76,7 +94,24 @@ export const experience = [
 
 export const skills = {
   Languages: ['Python', 'Java', 'C', 'SQL', 'JavaScript'],
-  'Backend & Databases': ['Flask', 'REST APIs', 'PostgreSQL'],
-  'Infrastructure & Cloud': ['GCP (Cloud Run, Cloud Build)', 'Docker', 'Linux', 'Git', 'CI/CD'],
-  'Core Concepts': ['Data Structures & Algorithms', 'Concurrency', 'Distributed Systems'],
+  'Backend & Databases': [
+    'FastAPI',
+    'SQLAlchemy 2.0 (async)',
+    'Pydantic',
+    'REST APIs',
+    'WebSockets',
+    'PostgreSQL',
+    'Redis',
+    'Alembic',
+  ],
+  'Infrastructure & Cloud': [
+    'GCP (Cloud Run, Cloud Build)',
+    'AWS (Rekognition)',
+    'Docker',
+    'Railway',
+    'Linux',
+    'Git',
+    'CI/CD',
+  ],
+  'Core Concepts': ['Data Structures & Algorithms', 'Concurrency', 'Distributed Systems', 'OOP'],
 };

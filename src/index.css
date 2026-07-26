@@ -6,9 +6,13 @@
   --text:         #e5e5e5;
   --text-muted:   #a8a8a8;
   --accent:       #00ff88;
+  --accent-hover: #00e07a;
   --accent-dim:   rgba(0, 255, 136, 0.12);
+  --accent-glow:  rgba(0, 255, 136, 0.06);
   --border:       rgba(255, 255, 255, 0.08);
   --border-hover: rgba(0, 255, 136, 0.4);
+  --scrollbar:       #333;
+  --scrollbar-hover: #555;
   --radius:       8px;
   --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
   --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
@@ -24,9 +28,13 @@
   --text:         #111111;
   --text-muted:   #555555;
   --accent:       #00aa55;
+  --accent-hover: #009149;
   --accent-dim:   rgba(0, 170, 85, 0.12);
+  --accent-glow:  rgba(0, 170, 85, 0.08);
   --border:       rgba(0, 0, 0, 0.08);
   --border-hover: rgba(0, 170, 85, 0.4);
+  --scrollbar:       #c4c4c4;
+  --scrollbar-hover: #a0a0a0;
   --nav-blur-bg:  rgba(245, 245, 245, 0.88);
   --nav-menu-bg:  rgba(245, 245, 245, 0.96);
 }
@@ -106,6 +114,7 @@ ul, ol {
   color: var(--text);
   margin-bottom: 48px;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 .section-title span {
@@ -144,7 +153,7 @@ ul, ol {
 }
 
 .btn-primary:hover {
-  background: #00e07a;
+  background: var(--accent-hover);
   transform: translateY(-2px);
 }
 
@@ -167,11 +176,11 @@ ul, ol {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--scrollbar);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--scrollbar-hover);
 }
 
 /* ===== Selection ===== */

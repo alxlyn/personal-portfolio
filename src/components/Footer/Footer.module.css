@@ -4,6 +4,25 @@
   border-top: 1px solid var(--border);
 }
 
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.socialLink {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: var(--accent);
+}
+
 .text {
   font-size: 0.8rem;
   color: var(--text-muted);
