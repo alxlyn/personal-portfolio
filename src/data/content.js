@@ -5,8 +5,8 @@
 
 export const personal = {
   name: 'Aleksei Lian',
-  role: 'CS Student · Backend Engineer',
-  tagline: 'I build backend systems that make it to production — most recently a dating app shipped to TestFlight.',
+  role: 'Backend Engineer · CS Student @ York',
+  tagline: 'I build backend systems that make it to production. Shipped a dating app to TestFlight; now building Mendy.',
   email: 'alekseilianv@gmail.com',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
@@ -16,9 +16,9 @@ export const personal = {
 
 export const about = {
   paragraphs: [
-    "I'm a CS student at York University focused on backend engineering. I co-founded Tanish, a dating app for Central Asia, and built the whole product — a FastAPI/PostgreSQL backend with 2,200+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 6 languages.",
-    "Right now I'm building Mendy, an advice buddy that remembers you — FastAPI, async SQLAlchemy, and LLM-driven conversations with long-term memory.",
-    "I'm looking for backend internship opportunities (summer/fall 2026) where I can work on real systems with experienced engineers.",
+    "I'm a backend engineer and CS student at York University, currently building Mendy — an advice buddy that remembers you. I'm building the whole system solo: FastAPI, async SQLAlchemy, PostgreSQL, and an LLM conversation engine with long-term memory and a tiered safety pipeline.",
+    "Before Mendy I co-founded Tanish, a dating app for Central Asia, and built the entire product — a FastAPI/PostgreSQL backend with 2,200+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 6 languages. It's paused while I focus on Mendy.",
+    "I'm looking for backend internships for summer 2027 — if you want to talk systems or startups, my inbox is open.",
   ],
   currentlyInto: [
     'FastAPI & async SQLAlchemy',
@@ -65,12 +65,25 @@ export const projects = [
 
 export const experience = [
   {
+    company: 'Mendy',
+    companyNote: null,
+    title: 'Founder & Engineer',
+    location: 'Toronto, ON',
+    start: 'Jul 2026',
+    end: 'Present',
+    bullets: [
+      'Building an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
+      'LLM conversation engine with proactive follow-ups and a tiered crisis-safety pipeline',
+      '140+ backend tests including a safety eval suite',
+    ],
+  },
+  {
     company: 'Tanish',
     companyNote: 'Early-Stage Startup',
     title: 'Co-Founder & Lead Backend Engineer',
     location: 'Remote',
     start: 'Jan 2026',
-    end: 'Present',
+    end: 'Jul 2026',
     bullets: [
       'Built the full product: FastAPI/PostgreSQL backend with 2,200+ tests, JWT auth, real-time WebSocket chat, and a React Native iOS app shipped to TestFlight',
       'Shipped AWS face-liveness identity verification and LLM-based compatibility scoring',

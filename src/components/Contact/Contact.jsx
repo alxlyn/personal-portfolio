@@ -13,8 +13,9 @@ export default function Contact() {
           Let&apos;s Work <span>Together</span>
         </h2>
         <p className={styles.sub}>
-          I&apos;m currently open to internship opportunities and interesting collaborations.
-          Whether you have a project in mind or just want to say hi, my inbox is always open.
+          I&apos;m looking for backend internships for summer 2027 and always up for
+          interesting collaborations. Whether you have a project in mind or just want to
+          say hi, my inbox is always open.
         </p>
         <a href={`mailto:${personal.email}`} className={`btn btn-primary ${styles.emailBtn}`}>
           {personal.email}
