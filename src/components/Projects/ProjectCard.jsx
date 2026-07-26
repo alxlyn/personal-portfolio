@@ -1,6 +1,6 @@
 import styles from './Projects.module.css';
 
-export default function ProjectCard({ title, description, tags, github, featured, metrics, status }) {
+export default function ProjectCard({ title, description, tags, github, featured, metrics, status, caseStudy }) {
   return (
     <article className={featured ? `${styles.card} ${styles.featured}` : styles.card}>
       <div className={styles.cardTop}>
@@ -49,6 +49,12 @@ export default function ProjectCard({ title, description, tags, github, featured
             </li>
           ))}
         </ul>
+      )}
+
+      {caseStudy && (
+        <a href={caseStudy} className={styles.caseLink}>
+          Read the case study <span aria-hidden="true">&rarr;</span>
+        </a>
       )}
 
       <ul className={styles.tags} aria-label="Technologies used">

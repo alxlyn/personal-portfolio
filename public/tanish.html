@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tanish — Case Study | Aleksei Lian</title>
+    <meta name="description" content="Case study: co-founding Tanish, a dating app for Central Asia — FastAPI/PostgreSQL backend with 2,200+ tests, React Native iOS app on TestFlight, face-liveness verification, LLM scoring, 6 languages." />
+    <meta property="og:title" content="Tanish — Case Study | Aleksei Lian" />
+    <meta property="og:description" content="How I built and shipped a dating app for Central Asia: architecture, hard bugs, and the engineering decisions behind them." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alekseilian.com/tanish" />
+    <meta property="og:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:creator" content="@_alxlyn" />
+    <style>
+      :root {
+        --bg: #0a0a0a;
+        --bg-surface: #111111;
+        --text: #e5e5e5;
+        --text-muted: #a8a8a8;
+        --accent: #00ff88;
+        --accent-dim: rgba(0, 255, 136, 0.12);
+        --border: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(0, 255, 136, 0.4);
+        --radius: 8px;
+        --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 96px; }
+      .back {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        display: inline-block;
+        margin-bottom: 48px;
+      }
+      .label {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        text-wrap: balance;
+      }
+      .subtitle { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 56px; }
+      .chip {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--accent);
+        border: 1px solid var(--border-hover);
+        padding: 4px 12px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin: 56px 0 16px;
+        letter-spacing: -0.01em;
+      }
+      h2 .n { color: var(--accent); font-family: var(--font-mono); font-size: 1rem; margin-right: 10px; }
+      h3 { font-size: 1.02rem; font-weight: 600; margin: 32px 0 8px; }
+      p { margin-bottom: 14px; }
+      .muted { color: var(--text-muted); }
+      ul { padding-left: 20px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      li::marker { color: var(--accent); }
+      .card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        margin: 20px 0;
+      }
+      .stack {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 2;
+      }
+      .stack b { color: var(--text); font-weight: 500; }
+      code {
+        font-family: var(--font-mono);
+        font-size: 0.85em;
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1px 6px;
+      }
+      .footer {
+        margin-top: 72px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a class="back" href="/">&larr; alekseilian.com</a>
+
+      <p class="label">Case Study · Jan – Jul 2026</p>
+      <h1>Tanish — a dating app for Central Asia</h1>
+      <p class="subtitle">
+        Co-founded, built the whole product, and shipped it through Apple review to TestFlight.
+        The code is private; this is the engineering story. Walkthrough available on request.
+      </p>
+      <div class="chips">
+        <span class="chip">2,200+ backend tests</span>
+        <span class="chip">Cleared App Review</span>
+        <span class="chip">6 languages</span>
+        <span class="chip">Co-founder</span>
+      </div>
+
+      <h2><span class="n">01</span>Context</h2>
+      <p>
+        Dating apps built for Western markets translate poorly to Central Asia — literally
+        (none of the majors ship Kyrgyz) and culturally (family reputation and safety concerns
+        make women cautious about being visible on a swipe app). Tanish is a Kyrgyzstan-first
+        dating app built around a staged &ldquo;journey&rdquo;: matches progress through
+        challenges and conversation stages toward a real date, instead of an endless swipe feed.
+      </p>
+      <p>
+        I co-founded it and built the product end to end: the backend, the iOS app, the
+        infrastructure, and the release pipeline — coordinating two contracted engineers on the
+        early mobile core and reviewing every line that merged.
+      </p>
+
+      <h2><span class="n">02</span>Architecture</h2>
+      <div class="card stack">
+        <b>API</b> — FastAPI, async SQLAlchemy 2.0, Pydantic v2; web + background worker<br />
+        <b>Data</b> — PostgreSQL, Alembic migrations gated before deploy; Redis for rate limiting &amp; caching<br />
+        <b>Realtime</b> — WebSocket chat with push-notification fallback<br />
+        <b>Mobile</b> — React Native (Expo) iOS app, EAS builds to TestFlight<br />
+        <b>Media</b> — S3-compatible object storage, presigned upload/download, moderation pipeline<br />
+        <b>Trust</b> — AWS Rekognition face liveness, LLM content moderation, JWT auth
+      </div>
+      <p class="muted">
+        Everything below is a real problem from this codebase and the decision that resolved it.
+      </p>
+
+      <h2><span class="n">03</span>Verifying humans without punishing users</h2>
+      <p>
+        Fake profiles kill trust faster than anything else in dating. I shipped face-liveness
+        verification with AWS Rekognition: the app opens a liveness session, the user scans their
+        face, the backend fetches results with short-lived STS credentials scoped per session —
+        no long-lived AWS keys near the client.
+      </p>
+      <ul>
+        <li>
+          <b>Decision:</b> an estimated-age mismatch <i>flags</i> the account for review instead of
+          hard-blocking — age estimation is too noisy to auto-punish real users.
+        </li>
+        <li>
+          <b>Decision:</b> the liveness photo is soft-matched against profile photos; a mismatch
+          lowers trust score rather than rejecting, for the same reason.
+        </li>
+      </ul>
+
+      <h2><span class="n">04</span>The upload bug that broke a TestFlight build</h2>
+      <p>
+        Build 3 shipped with a &ldquo;picture upload error&rdquo; for every user. Root cause: our
+        storage provider&rsquo;s S3-compatible layer silently rejected presigned <code>POST</code>
+        uploads carrying tagging metadata — it only honors presigned <code>PUT</code> signed over
+        bucket and key alone.
+      </p>
+      <ul>
+        <li>Switched all media uploads to presigned <code>PUT</code>, signing only what the provider verifies.</li>
+        <li>Tagging was how we tracked unconfirmed uploads, so I replaced it with a janitor job that cross-references storage against the database and deletes orphans.</li>
+        <li>Verified the fix end-to-end against production storage before the next build: ticket &rarr; PUT &rarr; register &rarr; signed GET &rarr; delete.</li>
+      </ul>
+      <p class="muted">
+        Lesson: &ldquo;S3-compatible&rdquo; is a spectrum. Integration tests against the real
+        provider catch what mocked S3 never will.
+      </p>
+
+      <h2><span class="n">05</span>LLM features that fail open</h2>
+      <p>
+        Matches answer challenge questions; an LLM scores the answers and shifts the pair&rsquo;s
+        compatibility score. When our OpenAI account hit a quota wall in production, nothing
+        broke: scoring silently fell back to the baseline compatibility value, voice moderation
+        queued, and users never saw an error.
+      </p>
+      <p>
+        That was designed, not lucky: every LLM call sits behind a fail-open wrapper — an AI
+        outage degrades the experience, it must never take down a core flow. The incident cost us
+        a feature for a day, not the product.
+      </p>
+
+      <h2><span class="n">06</span>Auth, rewritten by the market</h2>
+      <p>
+        We launched with phone + SMS OTP — the obvious choice until SMS deliverability and
+        per-message cost in Kyrgyzstan said otherwise. I migrated the entire auth stack to email
+        OTP (Twilio Verify&rsquo;s email channel + SendGrid), killing passwords entirely.
+      </p>
+      <ul>
+        <li>Disposable-email domains blocked at signup.</li>
+        <li>
+          Bans survive account deletion via an HMAC-hashed banned-email ledger — we can keep a bad
+          actor out without storing their raw email after they&rsquo;re gone.
+        </li>
+        <li>The swap was a clean cutover: one PR, 1,500+ tests green, security-reviewed.</li>
+      </ul>
+
+      <h2><span class="n">07</span>Six languages, one human translator</h2>
+      <p>
+        The app ships in English, Russian, Kyrgyz, Kazakh, Uzbek, and Tajik. Kyrgyz came from a
+        human translator&rsquo;s document — I value-matched 500+ translated strings onto the
+        existing Russian catalog programmatically, tracked the 131 gaps that fall back to Russian
+        in a checked-in file, and kept interpolation tokens intact so nothing crashes at render.
+      </p>
+
+      <h2><span class="n">08</span>Discipline</h2>
+      <ul>
+        <li>2,200+ backend and 800+ frontend tests; CI runs both on every PR.</li>
+        <li>Migrations run in a gated release step before new code serves traffic.</li>
+        <li>Every substantial change went through security review before merge; auth changes always.</li>
+      </ul>
+
+      <h2><span class="n">09</span>Status</h2>
+      <p>
+        Tanish cleared Apple&rsquo;s review and runs on TestFlight with production infrastructure
+        live. I paused it in July 2026 to focus on <a href="/#projects">Mendy</a> — the next thing
+        I couldn&rsquo;t stop thinking about.
+      </p>
+
+      <div class="footer">
+        Questions about any of this — or want a code walkthrough?
+        <a href="mailto:alekseilianv@gmail.com">alekseilianv@gmail.com</a> ·
+        <a href="/">alekseilian.com</a>
+      </div>
+    </div>
+  </body>
+</html>

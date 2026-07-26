@@ -38,6 +38,7 @@ export const projects = [
     github: null,
     featured: true,
     metrics: ['2,200+ tests', 'Live on TestFlight', '6 languages'],
+    caseStudy: '/tanish',
   },
   {
     title: 'Mendy',
@@ -50,7 +51,7 @@ export const projects = [
   {
     title: 'URL Shortener',
     description:
-      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes with zero collisions. Per-IP rate limiting with Redis, CI running 34 pytest integration tests against live Postgres, and CD to Cloud Run via Cloud Build.',
+      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes. Per-IP rate limiting with Redis, CI running 38 pytest tests against live Postgres, and CD to Cloud Run via Cloud Build.',
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'GCP'],
     github: 'https://github.com/alxlyn/alex-url-shortener',
   },

@@ -112,6 +112,19 @@
   border-radius: 999px;
 }
 
+.caseLink {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  width: fit-content;
+  transition: opacity 0.2s;
+}
+
+.caseLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
