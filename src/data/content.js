@@ -17,7 +17,7 @@ export const personal = {
 export const about = {
   paragraphs: [
     "I'm a backend engineer and CS student at York University, currently building Mendy — an advice buddy that remembers you. I'm building the whole system solo: FastAPI, async SQLAlchemy, PostgreSQL, and an LLM conversation engine with long-term memory and a tiered safety pipeline.",
-    "Before Mendy I co-founded Tanish, a dating app for Central Asia, and built the entire product — a FastAPI/PostgreSQL backend with 2,200+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 6 languages. It's paused while I focus on Mendy.",
+    "Before Mendy I co-founded Tanish, a dating app for Central Asia, and built the entire product — a FastAPI/PostgreSQL backend with 2,300+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 4 languages. It's paused while I focus on Mendy.",
     "I'm looking for backend internships for summer 2027 — if you want to talk systems or startups, my inbox is open.",
   ],
   currentlyInto: [
@@ -33,11 +33,11 @@ export const projects = [
   {
     title: 'Tanish — Dating App for Central Asia',
     description:
-      'Co-founded and built the whole product: FastAPI + PostgreSQL backend, React Native iOS app on TestFlight, real-time WebSocket chat, AWS face-liveness identity verification, LLM compatibility scoring, and localization into 6 languages including human-translated Kyrgyz.',
+      'Co-founded and built the whole product: FastAPI + PostgreSQL backend, React Native iOS app on TestFlight, real-time WebSocket chat, AWS face-liveness identity verification, an LLM answer-alignment score, and localization into 4 languages including human-translated Kyrgyz.',
     tags: ['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'React Native', 'WebSockets', 'AWS'],
     github: null,
     featured: true,
-    metrics: ['2,200+ tests', 'Live on TestFlight', '6 languages'],
+    metrics: ['2,300+ tests', 'Live on TestFlight', '4 languages'],
     caseStudy: '/tanish',
   },
   {
@@ -75,7 +75,7 @@ export const experience = [
     bullets: [
       'Building an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
       'LLM conversation engine with proactive follow-ups and a tiered crisis-safety pipeline',
-      '140+ backend tests including a safety eval suite',
+      '153 backend tests plus a 40-case safety golden set that gates prompt changes',
     ],
   },
   {
@@ -84,11 +84,11 @@ export const experience = [
     title: 'Co-Founder & Lead Backend Engineer',
     location: 'Remote',
     start: 'Jan 2026',
-    end: 'Jul 2026',
+    end: 'Present',
     bullets: [
-      'Built the full product: FastAPI/PostgreSQL backend with 2,200+ tests, JWT auth, real-time WebSocket chat, and a React Native iOS app shipped to TestFlight',
-      'Shipped AWS face-liveness identity verification and LLM-based compatibility scoring',
-      'Led technical delivery for 2 contracted engineers; enforced code standards via PR reviews',
+      'Built the full product: FastAPI/PostgreSQL backend with 2,300+ tests, JWT auth, real-time WebSocket chat, and a React Native iOS app shipped to TestFlight',
+      'Shipped AWS face-liveness identity verification and an LLM answer-alignment score',
+      'Closed a live-database privacy leak with deny-by-default row-level security on every public table',
     ],
   },
   {
