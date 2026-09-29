@@ -6,7 +6,7 @@
 export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend Engineer · CS Student @ York',
-  tagline: 'I build backend systems that make it to production: a dating app on TestFlight, a cross-border marketplace, and an LLM companion with long-term memory.',
+  tagline: 'I build backend systems and check that they are actually right: a dating app on TestFlight, a cross-border marketplace, and an LLM companion with long-term memory.',
   email: 'alekseilianv@gmail.com',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',

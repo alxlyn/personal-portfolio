@@ -156,7 +156,7 @@
       <h2><span class="n">02</span>Architecture</h2>
       <div class="card stack">
         <b>API</b> — FastAPI, async SQLAlchemy 2.0, Pydantic v2; web + background worker<br />
-        <b>Data</b> — PostgreSQL, Alembic migrations gated before deploy; Redis for rate limiting &amp; caching<br />
+        <b>Data</b> — PostgreSQL with Alembic migrations applied before each release; Redis for rate limiting &amp; caching<br />
         <b>Realtime</b> — WebSocket chat with push-notification fallback<br />
         <b>Mobile</b> — React Native (Expo) iOS app, EAS builds to TestFlight<br />
         <b>Media</b> — S3-compatible object storage, presigned upload/download, moderation pipeline<br />
@@ -240,7 +240,7 @@
       <h2><span class="n">08</span>Discipline</h2>
       <ul>
         <li>2,300+ backend and 800+ frontend tests; CI runs both on every PR.</li>
-        <li>Migrations run in a gated release step before new code serves traffic.</li>
+        <li>Alembic migrations are applied before each release, and a pre-deploy hook is committed for Git-triggered deploys.</li>
         <li>Every substantial change went through security review before merge; auth changes always.</li>
       </ul>
 
