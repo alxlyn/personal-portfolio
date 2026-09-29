@@ -6,7 +6,7 @@
 export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend Engineer · CS Student @ York',
-  tagline: 'I build backend systems that make it to production. Shipped a dating app to TestFlight; now building Mendy.',
+  tagline: 'I build backend systems that make it to production: a dating app on TestFlight, a cross-border marketplace, and an LLM companion with long-term memory.',
   email: 'alekseilianv@gmail.com',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
@@ -54,7 +54,6 @@ export const projects = [
       'An advice buddy that remembers you. FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline.',
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'LLM'],
     github: null,
-    status: 'In progress',
   },
   {
     title: 'URL Shortener',
@@ -79,9 +78,9 @@ export const experience = [
     title: 'Co-Founder & Backend Engineer',
     location: 'Toronto, ON',
     start: 'Jul 2026',
-    end: 'Present',
+    end: 'Aug 2026',
     bullets: [
-      'Building an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
+      'Built the backend for an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
       'LLM conversation engine with proactive follow-ups and a tiered crisis-safety pipeline',
       '153 backend tests plus a 40-case safety golden set that gates prompt changes',
     ],
