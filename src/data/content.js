@@ -16,8 +16,8 @@ export const personal = {
 
 export const about = {
   paragraphs: [
-    "I'm a backend engineer and CS student at York University, currently building Mendy — an advice buddy that remembers you. I'm building the whole system solo: FastAPI, async SQLAlchemy, PostgreSQL, and an LLM conversation engine with long-term memory and a tiered safety pipeline.",
-    "Before Mendy I co-founded Tanish, a dating app for Central Asia, and built the entire product — a FastAPI/PostgreSQL backend with 2,300+ tests, a React Native iOS app shipped to TestFlight, AWS face-liveness identity verification, and localization into 4 languages. It's paused while I focus on Mendy.",
+    "I'm a backend engineer and CS student at York University. Since January 2026 I've co-founded three products and built them as lead or sole engineer: Mendy, an advice buddy that remembers you; Arzan, a cross-border marketplace; and Tanish, a dating app for Central Asia.",
+    "Tanish has a FastAPI/PostgreSQL backend with 2,300+ tests, a React Native iOS app on TestFlight, AWS face-liveness verification and 4 languages. On Arzan I'm the sole engineer on a 90+ endpoint API, a React/TypeScript operator console and an Expo app. Mendy runs on FastAPI and PostgreSQL with an LLM conversation engine, long-term memory and a tiered safety pipeline.",
     "I'm looking for backend internships for summer 2027 — if you want to talk systems or startups, my inbox is open.",
   ],
   currentlyInto: [
@@ -41,6 +41,14 @@ export const projects = [
     caseStudy: '/tanish',
   },
   {
+    title: 'Arzan — Cross-Border Marketplace',
+    description:
+      'Sole engineer on a marketplace for Kyrgyzstan: a 90+ endpoint FastAPI/PostgreSQL API, a React/TypeScript operator console and an Expo app, 1,600+ backend tests, row-locked purchases, money rules enforced by 50 CHECK constraints, and TOTP 2FA for staff.',
+    tags: ['FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Expo'],
+    github: null,
+    status: 'In progress',
+  },
+  {
     title: 'Mendy',
     description:
       'An advice buddy that remembers you. FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline.',
@@ -51,14 +59,14 @@ export const projects = [
   {
     title: 'URL Shortener',
     description:
-      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes. Per-IP rate limiting with Redis, CI running 38 pytest tests against live Postgres, and CD to Cloud Run via Cloud Build.',
+      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes. Per-IP rate limiting with Redis and 38 pytest tests in CI (23 against a live Postgres container); previously deployed to Cloud Run via Cloud Build.',
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'GCP'],
     github: 'https://github.com/alxlyn/alex-url-shortener',
   },
   {
     title: 'Chess Engine — UCI Compatible',
     description:
-      'UCI-compatible chess engine with Negamax search, Alpha-Beta pruning, quiescence search, and transposition tables. Achieves depth-6 search in middlegame positions with MVV-LVA move ordering.',
+      'UCI-compatible chess engine with Negamax search, Alpha-Beta pruning, quiescence search, and transposition tables. Reaches depth 5–6 in middlegame positions with MVV-LVA move ordering.',
     tags: ['Python', 'UCI', 'Negamax', 'Alpha-Beta'],
     github: 'https://github.com/alxlyn/alex-chess-engine',
   },
@@ -68,7 +76,7 @@ export const experience = [
   {
     company: 'Mendy',
     companyNote: null,
-    title: 'Founder & Engineer',
+    title: 'Co-Founder & Backend Engineer',
     location: 'Toronto, ON',
     start: 'Jul 2026',
     end: 'Present',
@@ -76,6 +84,19 @@ export const experience = [
       'Building an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
       'LLM conversation engine with proactive follow-ups and a tiered crisis-safety pipeline',
       '153 backend tests plus a 40-case safety golden set that gates prompt changes',
+    ],
+  },
+  {
+    company: 'Arzan',
+    companyNote: 'Cross-Border Marketplace',
+    title: 'Co-Founder & Lead Engineer',
+    location: 'Remote',
+    start: 'May 2026',
+    end: 'Present',
+    bullets: [
+      'Sole engineer: 90+ endpoint FastAPI/PostgreSQL API, React/TypeScript operator console and Expo app, 1,600+ backend tests in GitHub Actions',
+      'Fixed a race that let two operators buy the same order; moved money rules into 50 CHECK constraints',
+      'Verified every finding from a dozen-plus AI code-review passes against the source before fixing anything',
     ],
   },
   {
@@ -92,22 +113,33 @@ export const experience = [
     ],
   },
   {
-    company: 'KPD Advertising Firm',
-    companyNote: null,
+    company: 'Temir AI',
+    companyNote: 'Freelance',
+    title: 'Freelance Developer',
+    location: 'Bishkek (remote)',
+    start: 'Aug 2026',
+    end: 'Sep 2026',
+    bullets: [
+      'AI quoting copilot for a metal warehouse: orders pasted as text, PDF, spreadsheet or photo become priced quotes, via the Anthropic API',
+      'The model may answer only with catalog IDs; unknown units and sizes are flagged, not guessed',
+    ],
+  },
+  {
+    company: 'KPD Advertising',
+    companyNote: 'Seasonal, summers',
     title: 'Production & IT Support Assistant',
-    location: 'On-site',
+    location: 'Bishkek',
     start: 'May 2022',
     end: 'Aug 2025',
     bullets: [
-      'Maintained network infrastructure and file-sharing systems',
-      'Automated recurring workflows to reduce manual overhead',
-      'Provided production support and internal IT troubleshooting',
+      'Set up centralized SMB/NFS file sharing and kept computers, Wi-Fi and printers running',
+      'Checked print orders before pickup and trained non-technical coworkers',
     ],
   },
 ];
 
 export const skills = {
-  Languages: ['Python', 'Java', 'C', 'SQL', 'JavaScript'],
+  Languages: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'Java', 'C'],
   'Backend & Databases': [
     'FastAPI',
     'SQLAlchemy 2.0 (async)',
@@ -123,9 +155,11 @@ export const skills = {
     'AWS (Rekognition)',
     'Docker',
     'Railway',
+    'GitHub Actions',
+    'Supabase',
     'Linux',
     'Git',
     'CI/CD',
   ],
-  'Core Concepts': ['Data Structures & Algorithms', 'Concurrency', 'Distributed Systems', 'OOP'],
+  'Core Concepts': ['Data Structures & Algorithms', 'Concurrency', 'LLM Evaluation', 'Secure Code Review'],
 };
