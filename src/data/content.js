@@ -16,7 +16,7 @@ export const personal = {
 
 export const about = {
   paragraphs: [
-    "I'm a backend engineer and CS student at York University. Since January 2026 I've co-founded three products and built them as lead or sole engineer: Mendy, an advice buddy that remembers you; Arzan, a cross-border marketplace; and Tanish, a dating app for Central Asia.",
+    "I'm a backend engineer and CS student at York University. Since January 2026 I've co-founded two startups and built them as lead or sole engineer: Tanish, a dating app for Central Asia, and Arzan, a cross-border marketplace. I also tutor math one-on-one, and I built Mendy, an advice buddy that remembers you, as a summer project.",
     "Tanish has a FastAPI/PostgreSQL backend with 2,300+ tests, a React Native iOS app on TestFlight, AWS face-liveness verification and 4 languages. On Arzan I'm the sole engineer on a 90+ endpoint API, a React/TypeScript operator console and an Expo app. Mendy runs on FastAPI and PostgreSQL with an LLM conversation engine, long-term memory and a tiered safety pipeline.",
     "I'm looking for backend internships for summer 2027 — if you want to talk systems or startups, my inbox is open.",
   ],
@@ -51,8 +51,15 @@ export const projects = [
   {
     title: 'Mendy',
     description:
-      'An advice buddy that remembers you. FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline.',
+      'An advice buddy that remembers you, co-founded as a summer project (Jul–Aug 2026). FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline gated by a 40-case golden eval set.',
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'LLM'],
+    github: null,
+  },
+  {
+    title: 'Temir AI — Quoting Copilot',
+    description:
+      'Freelance build (Aug–Sep 2026) for a metal warehouse in Bishkek: orders pasted as text, PDF, spreadsheet or photo become priced quotes via the Anthropic API. The model may answer only with catalog IDs; unknown units and sizes are flagged, not guessed.',
+    tags: ['JavaScript', 'Anthropic API', 'Vercel', 'PostgreSQL'],
     github: null,
   },
   {
@@ -72,19 +79,6 @@ export const projects = [
 ];
 
 export const experience = [
-  {
-    company: 'Mendy',
-    companyNote: null,
-    title: 'Co-Founder & Backend Engineer',
-    location: 'Toronto, ON',
-    start: 'Jul 2026',
-    end: 'Aug 2026',
-    bullets: [
-      'Built the backend for an advice buddy with long-term memory — FastAPI, async SQLAlchemy 2.0, PostgreSQL, Alembic',
-      'LLM conversation engine with proactive follow-ups and a tiered crisis-safety pipeline',
-      '153 backend tests plus a 40-case safety golden set that gates prompt changes',
-    ],
-  },
   {
     company: 'Arzan',
     companyNote: 'Cross-Border Marketplace',
@@ -112,27 +106,14 @@ export const experience = [
     ],
   },
   {
-    company: 'Temir AI',
-    companyNote: 'Freelance',
-    title: 'Freelance Developer',
-    location: 'Bishkek (remote)',
-    start: 'Aug 2026',
-    end: 'Sep 2026',
+    company: 'Self-Employed',
+    companyNote: null,
+    title: 'Math Tutor',
+    location: 'Remote',
+    start: 'Jan 2024',
+    end: 'Present',
     bullets: [
-      'AI quoting copilot for a metal warehouse: orders pasted as text, PDF, spreadsheet or photo become priced quotes, via the Anthropic API',
-      'The model may answer only with catalog IDs; unknown units and sizes are flagged, not guessed',
-    ],
-  },
-  {
-    company: 'KPD Advertising',
-    companyNote: 'Seasonal, summers',
-    title: 'Production & IT Support Assistant',
-    location: 'Bishkek',
-    start: 'May 2022',
-    end: 'Aug 2025',
-    bullets: [
-      'Set up centralized SMB/NFS file sharing and kept computers, Wi-Fi and printers running',
-      'Checked print orders before pickup and trained non-technical coworkers',
+      'One-on-one math tutoring: find the exact step where a solution goes wrong and explain it another way',
     ],
   },
 ];
