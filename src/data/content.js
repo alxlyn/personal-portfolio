@@ -1,12 +1,14 @@
 // -------------------------------------------------------
 // Edit this file to fill in your real information.
 // All content on the site is pulled from here.
+// Copy rule: no em dash. Use a spaced hyphen glued to the previous word
+// with a no-break space ('\u00A0- ').
 // -------------------------------------------------------
 
 export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend Engineer · CS Student @ York',
-  tagline: 'I build backend systems and check that they are actually right: a dating app on TestFlight, a cross-border marketplace, and an LLM companion with long-term memory.',
+  tagline: 'I build backend systems and check that they are actually right: a dating app shipped to a TestFlight beta, a cross-border marketplace, and an LLM companion with long-term memory.',
   email: 'alekseilianv@gmail.com',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
@@ -16,9 +18,9 @@ export const personal = {
 
 export const about = {
   paragraphs: [
-    "I'm a backend engineer and CS student at York University. Since January 2026 I've co-founded two startups and built them as lead or sole engineer: Tanish, a dating app for Central Asia, and Arzan, a cross-border marketplace. I also tutor math one-on-one, and I built Mendy, an advice buddy that remembers you, as a summer project.",
-    "Tanish has a FastAPI/PostgreSQL backend with 2,300+ tests, a React Native iOS app on TestFlight, AWS face-liveness verification and 4 languages. On Arzan I'm the sole engineer on a 90+ endpoint API, a React/TypeScript operator console and an Expo app. Mendy runs on FastAPI and PostgreSQL with an LLM conversation engine, long-term memory and a tiered safety pipeline.",
-    "I'm looking for backend internships for summer 2027 — if you want to talk systems or startups, my inbox is open.",
+    "I'm a backend engineer and CS student at York University. In 2026 I co-founded two startups: Tanish, a dating app for Central Asia, where I was the backend engineer from April to August, and Arzan, a China-to-Kyrgyzstan marketplace I've built as the sole engineer since May. I also tutor math one-on-one, and in July I built Mendy, an AI advice companion that remembers you.",
+    "Tanish reached a TestFlight beta with a FastAPI/PostgreSQL backend (2,600+ tests), a React Native iOS app, AWS face-liveness verification and 4 languages. Arzan is pre-launch: I'm the sole engineer on a 90+ endpoint API with 2,300+ backend tests, a React/TypeScript operator console and an Expo app. Mendy runs on FastAPI and PostgreSQL with an LLM conversation engine, long-term memory and a tiered safety pipeline.",
+    "I'm looking for backend internships for summer 2027. If you want to talk systems or startups, my inbox is open.",
   ],
   currentlyInto: [
     'FastAPI & async SQLAlchemy',
@@ -31,48 +33,48 @@ export const about = {
 
 export const projects = [
   {
-    title: 'Tanish — Dating App for Central Asia',
+    title: 'Tanish\u00A0- Dating App for Central Asia',
     description:
-      'Co-founded and built the whole product: FastAPI + PostgreSQL backend, React Native iOS app on TestFlight, real-time WebSocket chat, AWS face-liveness identity verification, an LLM answer-alignment score, and localization into 4 languages including human-translated Kyrgyz.',
+      'Co-founded as the backend engineer (Apr–Aug 2026) and shipped an iOS app to a TestFlight beta: FastAPI + PostgreSQL backend, React Native client, real-time WebSocket chat, JWT auth with rotating refresh tokens, AWS face-liveness identity verification, an LLM answer-alignment score, and localization into 4 languages including human-translated Kyrgyz.',
     tags: ['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'React Native', 'WebSockets', 'AWS'],
     github: null,
     featured: true,
-    metrics: ['2,300+ tests', 'Live on TestFlight', '4 languages'],
+    metrics: ['2,600+ backend tests', 'TestFlight beta', '4 languages'],
     caseStudy: '/tanish',
   },
   {
-    title: 'Arzan — Cross-Border Marketplace',
+    title: 'Arzan\u00A0- Cross-Border Marketplace',
     description:
-      'Sole engineer on a marketplace for Kyrgyzstan: a 90+ endpoint FastAPI/PostgreSQL API, a React/TypeScript operator console and an Expo app, 1,600+ backend tests, row-locked purchases, money rules enforced by 50 CHECK constraints, and TOTP 2FA for staff.',
+      'Sole engineer on a pre-launch China-to-Kyrgyzstan marketplace: a 90+ endpoint FastAPI/PostgreSQL API, a React/TypeScript operator console and an Expo app, 2,300+ backend tests, row-locked purchases, idempotent checkout, money rules enforced by 50 PostgreSQL CHECK constraints, and TOTP 2FA plus an audit log for staff. The AWS stack is written in OpenTofu but not yet deployed.',
     tags: ['FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Expo'],
     github: null,
     status: 'In progress',
   },
   {
-    title: 'Mendy',
+    title: 'Mendy\u00A0- AI Advice Companion',
     description:
-      'An advice buddy that remembers you, co-founded as a summer project (Jul–Aug 2026). FastAPI backend with async SQLAlchemy, LLM-driven conversations with long-term memory, proactive follow-ups, and a tiered safety pipeline gated by a 40-case golden eval set.',
-    tags: ['Python', 'FastAPI', 'PostgreSQL', 'LLM'],
+      'A summer project (Jul 2026): the backend of an AI advice companion that remembers you. FastAPI with async SQLAlchemy and PostgreSQL, LLM conversations with long-term memory, proactive follow-ups, and escalation of crisis messages. A 40-message safety test set, re-run after every prompt change, must flag all 12 crisis cases; it caught a prompt edit that moved a crisis message to a lower risk tier.',
+    tags: ['Python', 'FastAPI', 'PostgreSQL', 'OpenAI API'],
     github: null,
   },
   {
-    title: 'Temir AI — Quoting Copilot',
+    title: 'Temir AI\u00A0- Quote Builder for a Metal Supplier',
     description:
-      'Freelance build (Aug–Sep 2026) for a metal warehouse in Bishkek: orders pasted as text, PDF, spreadsheet or photo become priced quotes via the Anthropic API. The model may answer only with catalog IDs; unknown units and sizes are flagged, not guessed.',
+      'Unpaid client project (Aug–Sep 2026), used by 4 sales managers at 2 warehouses: customer orders sent as chat text, PDF, spreadsheet or photo become priced quotes. The LLM (Anthropic API) only extracts line items and every price comes from the catalog; API spend is capped per user and company-wide under a PostgreSQL advisory lock.',
     tags: ['JavaScript', 'Anthropic API', 'Vercel', 'PostgreSQL'],
     github: null,
   },
   {
     title: 'URL Shortener',
     description:
-      'Async URL shortener built with FastAPI and asyncpg, validated against 100,000 unique short codes. Per-IP rate limiting with Redis and 38 pytest tests in CI (23 against a live Postgres container); previously deployed to Cloud Run via Cloud Build.',
-    tags: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'GCP'],
+      'Async URL shortener (Feb–Mar 2026) built with FastAPI and asyncpg, where two simultaneous requests can\'t get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Deployed to Google Cloud Run with Cloud SQL via Cloud Build; GitHub Actions CI runs 38 pytest tests, 23 against a live PostgreSQL container.',
+    tags: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker', 'GCP'],
     github: 'https://github.com/alxlyn/alex-url-shortener',
   },
   {
-    title: 'Chess Engine — UCI Compatible',
+    title: 'Chess Engine\u00A0- UCI Compatible',
     description:
-      'UCI-compatible chess engine with Negamax search, Alpha-Beta pruning, quiescence search, and transposition tables. Reaches depth 5–6 in middlegame positions with MVV-LVA move ordering.',
+      'UCI chess engine with negamax alpha-beta search, iterative deepening, quiescence search, a transposition table and deadline-based time management. Plays full timed games in UCI GUIs such as Banksia (including against Stockfish 15.1 on a 1-minute clock); within a 0.5–1.5 s move budget it reaches depth 2–3.',
     tags: ['Python', 'UCI', 'Negamax', 'Alpha-Beta'],
     github: 'https://github.com/alxlyn/alex-chess-engine',
   },
@@ -81,28 +83,30 @@ export const projects = [
 export const experience = [
   {
     company: 'Arzan',
-    companyNote: 'Cross-Border Marketplace',
-    title: 'Co-Founder & Lead Engineer',
+    companyNote: 'China-to-Kyrgyzstan E-Commerce',
+    title: 'Software Engineer (Co-Founder)',
     location: 'Remote',
     start: 'May 2026',
     end: 'Present',
     bullets: [
-      'Sole engineer: 90+ endpoint FastAPI/PostgreSQL API, React/TypeScript operator console and Expo app, 1,600+ backend tests in GitHub Actions',
-      'Fixed a race that let two operators buy the same order; moved money rules into 50 CHECK constraints',
+      'Sole engineer: 90+ endpoint FastAPI/PostgreSQL API, React/TypeScript staff console and Expo app; GitHub Actions CI runs the 2,300+ test backend suite on both SQLite and PostgreSQL',
+      'Fixed a race where two operators could buy the same Taobao order with PostgreSQL row locks, and made checkout idempotent so a retried request never places a second order',
+      'Enforced money, quantity and status rules with 50 PostgreSQL CHECK constraints; added TOTP two-factor sign-in and an audit log of privileged staff actions',
       'Verified every finding from a dozen-plus AI code-review passes against the source before fixing anything',
     ],
   },
   {
     company: 'Tanish',
-    companyNote: 'Early-Stage Startup',
-    title: 'Co-Founder & Lead Backend Engineer',
+    companyNote: 'Dating App for Central Asia',
+    title: 'Backend Engineer (Co-Founder)',
     location: 'Remote',
-    start: 'Jan 2026',
-    end: 'Present',
+    start: 'Apr 2026',
+    end: 'Aug 2026',
     bullets: [
-      'Built the full product: FastAPI/PostgreSQL backend with 2,300+ tests, JWT auth, real-time WebSocket chat, and a React Native iOS app shipped to TestFlight',
-      'Shipped AWS face-liveness identity verification and an LLM answer-alignment score',
-      'Closed a live-database privacy leak with deny-by-default row-level security on every public table',
+      'Shipped an iOS dating app to a TestFlight beta: FastAPI/PostgreSQL backend with 2,600+ tests, WebSocket chat, React Native client',
+      'Designed JWT auth with 15-minute access tokens and rotating refresh tokens that revoke their whole chain on reuse',
+      'Integrated AWS Rekognition face-liveness checks and GPT-4o-mini scoring of match answers; localized into 4 languages',
+      "Closed a hole where Supabase's auto-generated API could read and write user tables with the project's public key, by enabling deny-by-default row-level security",
     ],
   },
   {
@@ -131,8 +135,9 @@ export const skills = {
     'Alembic',
   ],
   'Infrastructure & Cloud': [
-    'GCP (Cloud Run, Cloud Build)',
+    'GCP (Cloud Run, Cloud SQL, Cloud Build)',
     'AWS (Rekognition)',
+    'OpenTofu',
     'Docker',
     'Railway',
     'GitHub Actions',

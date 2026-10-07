@@ -33,7 +33,7 @@ export default function ProjectCard({ title, description, tags, github, featured
               </svg>
             </a>
           ) : (
-            !status && <span className={styles.privateNote}>Private — code on request</span>
+            !status && <span className={styles.privateNote}>Private&nbsp;- code on request</span>
           )}
         </div>
       </div>

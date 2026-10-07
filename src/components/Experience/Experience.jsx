@@ -22,7 +22,7 @@ export default function Experience() {
                     <h3 className={styles.company}>
                       {job.company}
                       {job.companyNote && (
-                        <span className={styles.companyNote}> — {job.companyNote}</span>
+                        <span className={styles.companyNote}>&nbsp;- {job.companyNote}</span>
                       )}
                     </h3>
                     <p className={styles.title}>{job.title}</p>
