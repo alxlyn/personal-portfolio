@@ -60,7 +60,7 @@ export const projects = [
   {
     title: 'Temir AI\u00A0- AI Quoting Startup (Co-Founder)',
     description:
-      'A startup I co-founded (Aug–Sep 2026). I built the product for our first customer, a metal supplier, where 4 sales managers at 2 warehouses used it: customer orders sent as chat text, PDF, spreadsheet or photo become priced quotes. The LLM (Anthropic API) only extracts line items and every price comes from the catalog; API spend is capped per user and company-wide under a PostgreSQL advisory lock.',
+      'A startup I co-founded in August 2026 and am still building. I built the product for our first customer, a metal supplier, where 4 sales managers at 2 warehouses used it: customer orders sent as chat text, PDF, spreadsheet or photo become priced quotes. The LLM (Anthropic API) only extracts line items and every price comes from the catalog; API spend is capped per user and company-wide under a PostgreSQL advisory lock.',
     tags: ['JavaScript', 'Anthropic API', 'Vercel', 'PostgreSQL'],
     github: null,
   },
