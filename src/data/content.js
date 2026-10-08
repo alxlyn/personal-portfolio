@@ -18,7 +18,7 @@ export const personal = {
 
 export const about = {
   paragraphs: [
-    "I'm a backend engineer and CS student at York University. In 2026 I co-founded two startups: Tanish, a dating app for Central Asia, where I was the backend engineer from April to August, and Arzan, a China-to-Kyrgyzstan marketplace I've built as the sole engineer since May. I also tutor math one-on-one, and in July I built Mendy, an AI advice companion that remembers you.",
+    "I'm a backend engineer and CS student at York University. In 2026 I co-founded three startups: Tanish, a dating app for Central Asia, where I was the backend engineer from April to August; Arzan, a China-to-Kyrgyzstan marketplace I've built as the sole engineer since May; and Temir AI, an AI quoting tool whose first customer was a metal supplier. I also tutor math one-on-one, and in July I built Mendy, an AI advice companion that remembers you.",
     "Tanish reached a TestFlight beta with a FastAPI/PostgreSQL backend (2,600+ tests), a React Native iOS app, AWS face-liveness verification and 4 languages. Arzan is pre-launch: I'm the sole engineer on a 90+ endpoint API with 2,300+ backend tests, a React/TypeScript operator console and an Expo app. Mendy runs on FastAPI and PostgreSQL with an LLM conversation engine, long-term memory and a tiered safety pipeline.",
     "I'm looking for backend internships for summer 2027. If you want to talk systems or startups, my inbox is open.",
   ],
@@ -58,9 +58,9 @@ export const projects = [
     github: null,
   },
   {
-    title: 'Temir AI\u00A0- Quote Builder for a Metal Supplier',
+    title: 'Temir AI\u00A0- AI Quoting Startup (Co-Founder)',
     description:
-      'Unpaid client project (Aug–Sep 2026), used by 4 sales managers at 2 warehouses: customer orders sent as chat text, PDF, spreadsheet or photo become priced quotes. The LLM (Anthropic API) only extracts line items and every price comes from the catalog; API spend is capped per user and company-wide under a PostgreSQL advisory lock.',
+      'A startup I co-founded (Aug–Sep 2026). I built the product for our first customer, a metal supplier, where 4 sales managers at 2 warehouses used it: customer orders sent as chat text, PDF, spreadsheet or photo become priced quotes. The LLM (Anthropic API) only extracts line items and every price comes from the catalog; API spend is capped per user and company-wide under a PostgreSQL advisory lock.',
     tags: ['JavaScript', 'Anthropic API', 'Vercel', 'PostgreSQL'],
     github: null,
   },
