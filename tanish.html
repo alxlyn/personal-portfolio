@@ -27,7 +27,7 @@
         <p class="dateline enter" style="--i: 2">Case study, Apr - Aug 2026</p>
         <p class="subtitle enter" style="--i: 3">
           I co-founded Tanish as the backend engineer, built the product end to end and took it to a TestFlight beta with 2 testers.
-          The code is private, so this page covers the engineering. I can walk through the code on a call.
+          The code is private, so this page covers the engineering. I can walk through the design on a call.
         </p>
       </div>
     </header>
@@ -115,8 +115,7 @@
           to manual review.
         </li>
         <li>
-          The liveness photo is soft-matched against profile photos. A mismatch creates a non-blocking flag for admin
-          review and doesn't reject anyone, so a bad match alone can't lock out a real user.
+          The liveness photo is compared with the profile photos, and mismatches go to human review.
         </li>
       </ul>
 
@@ -136,12 +135,12 @@
       <p>
         Matches answer challenge questions, and an LLM scores the answers and shifts the pair's compatibility score.
         When our OpenAI account hit a quota wall in production, scoring fell back to the quiz-based compatibility value
-        and users never saw an error. Moderation and transcription failed too, and content stayed visible while they did.
+        and users never saw an error. Moderation and transcription failed too.
       </p>
       <p>
         The scoring fallback was designed. The moderation recovery wasn't: failed jobs were never retried, because arq only
         re-queues on its own <code>Retry</code> signal. I added real retries and an hourly
-        sweep that re-screens chat messages and voice notes for up to 7 days.
+        sweep that re-screens the chat messages and voice notes the failed jobs missed.
       </p>
       <p>
         Feature calls like answer scoring and the place picker fail open, so an AI outage degrades the experience
@@ -186,8 +185,9 @@
       </p>
 
       <footer class="footer">
-        Want a code walkthrough? Message me on
-        <a href="https://linkedin.com/in/aleksei-lian">LinkedIn</a>.
+        Want to talk through the design? Email <a href="mailto:alekseilianv@gmail.com">alekseilianv@gmail.com</a> or
+        message me on <a href="https://linkedin.com/in/aleksei-lian">LinkedIn</a>. Resume:
+        <a href="/resume.pdf">PDF</a>.
       </footer>
     </main>
   </body>

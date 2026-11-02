@@ -52,6 +52,18 @@
   margin-top: 26px;
 }
 
+.cases {
+  margin-top: 16px;
+  font-size: var(--size-small);
+}
+
+.cases a {
+  display: inline-block;
+  padding-block: 6px;
+  color: var(--violet);
+  font-weight: 600;
+}
+
 .resume {
   display: inline-flex;
   align-items: center;

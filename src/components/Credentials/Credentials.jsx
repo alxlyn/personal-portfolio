@@ -26,7 +26,7 @@ export default function Credentials() {
     <Section id="credentials" title="Credentials">
       <div className={styles.groups}>
         <Group title="Education" items={education} />
-        <Group title="Languages" items={languages} across />
+        <Group title="Spoken languages" items={languages} across />
       </div>
     </Section>
   );

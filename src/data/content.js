@@ -3,7 +3,7 @@
 export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend Engineer',
-  intro: 'I build backend systems and the products on top of them, mostly in Python, FastAPI and PostgreSQL. I study computer science at York University and have co-founded three startups.',
+  intro: "I build backends in Python, FastAPI and PostgreSQL. I'm the sole engineer at Arzan, a pre-launch e-commerce startup, where I fixed a race that let two operators buy the same order. I also co-founded Temir AI, which 4 sales managers at a metal supplier use to turn orders into priced quotes.",
   availability: 'Open to Summer 2027 internships anywhere in the US or Canada',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
@@ -11,22 +11,20 @@ export const personal = {
   email: 'alekseilianv@gmail.com',
   resume: '/resume.pdf',
   resumeImage: '/resume.svg',
-  privateCode: "Arzan, Tanish, Temir AI and Mendy are private repos. I'm glad to walk through the code on a call.",
+  privateCode: "Arzan, Tanish, Temir AI and Mendy are private repos. I'm glad to walk through the design on a call.",
   contact: 'Message me on LinkedIn',
   emailLabel: 'Email me',
 };
 
 export const facts = [
-  { label: 'Summer 2027 work status', value: 'Authorized to work in the US and Canada, no sponsorship needed' },
+  { label: 'Work status', value: 'US: authorized, no sponsorship needed now or in the future. Canada: eligible to work full-time in Summer 2027.' },
   { label: 'Studying', value: 'BSc Computer Science, York University' },
   { label: 'Graduating', value: 'December 2027' },
   { label: 'Relocation', value: 'Open to relocating' },
-  { label: 'Languages', value: 'Russian, English' },
 ];
 
 export const about = [
   'I spend most of my time on backend work, especially concurrency bugs, data integrity and security.',
-  "I've co-founded three startups. Temir AI is an AI quoting tool: 4 sales managers at 2 warehouses of a metal supplier, our pilot customer, use it to turn orders into priced quotes. I'm the sole engineer at Arzan, a cross-border e-commerce platform between China and Kyrgyzstan. I was the backend engineer at Tanish, a dating app for Central Asia that reached a TestFlight beta.",
 ];
 
 export const experience = [
@@ -55,7 +53,7 @@ export const experience = [
     bullets: [
       'Built an iOS app (TestFlight beta, 2 testers): FastAPI/PostgreSQL backend, WebSocket chat, React Native client.',
       'Designed JWT auth with 15-minute access tokens and rotating refresh tokens that revoke the chain on reuse.',
-      'Verified real users with AWS Rekognition face liveness, using STS credentials that can only start the stream.',
+      'Added AWS Rekognition face-liveness checks, using STS credentials that can only start the liveness stream.',
       "Closed a hole where anyone with the project's public key could read and write user tables through Supabase's auto-generated API, by enabling deny-by-default row-level security.",
     ],
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'React Native', 'AWS'],
@@ -84,7 +82,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026',
-    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. GitHub Actions CI runs 38 tests, 23 against live PostgreSQL; an earlier Flask version ran on Cloud Run.",
+    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 38 tests, 23 against live PostgreSQL; an earlier Flask version ran on Cloud Run.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker'],
   },
   {

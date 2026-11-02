@@ -223,6 +223,23 @@ test.describe('the resume pop-up', () => {
     await expect(dialog(page).getByRole('link', { name: 'Download PDF' })).toHaveAttribute('href', '/resume.pdf');
   });
 
+  test('on a phone the link opens the PDF itself instead of the pop-up', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+    // A window listener runs after React's handler, so it sees whether the click was cancelled.
+    const cancelled = await button(page).evaluate((link) => {
+      let seen = null;
+      window.addEventListener('click', (event) => {
+        seen = event.defaultPrevented;
+        event.preventDefault();
+      }, { once: true });
+      link.click();
+      return seen;
+    });
+    expect(cancelled).toBe(false);
+    await expect(dialog(page)).toBeHidden();
+  });
+
   test('opens from the navigation bar too', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Resume', exact: true }).click();

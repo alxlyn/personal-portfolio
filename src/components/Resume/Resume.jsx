@@ -15,6 +15,11 @@ function prefersReducedMotion() {
   return matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+// On a phone the sheet is too small to read, so the link opens the PDF in the browser's own viewer.
+function onPhone() {
+  return matchMedia('(max-width: 52em), (pointer: coarse)').matches;
+}
+
 export function ResumeProvider({ children }) {
   const [requested, setRequested] = useState(false);
   const trigger = useRef(null);
@@ -35,7 +40,7 @@ export function ResumeProvider({ children }) {
   };
 
   const open = useCallback((event) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || onPhone()) return;
     event.preventDefault();
     trigger.current = event.currentTarget;
     closing.current = false;
@@ -95,7 +100,9 @@ export function ResumeProvider({ children }) {
     if (!sheet.current.contains(event.target) && !event.target.closest('a, button')) close();
   };
 
-  const prepare = useCallback(() => setRequested(true), []);
+  const prepare = useCallback(() => {
+    if (!onPhone()) setRequested(true);
+  }, []);
   const value = useMemo(() => ({ open, prepare }), [open, prepare]);
 
   return (
