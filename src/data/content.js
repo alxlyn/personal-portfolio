@@ -84,8 +84,8 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026',
-    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Previously on Google Cloud Run; GitHub Actions CI runs 38 tests, 23 against a live PostgreSQL container.",
-    stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker', 'GCP'],
+    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. GitHub Actions CI runs 38 tests, 23 against live PostgreSQL; an earlier Flask version ran on Cloud Run.",
+    stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker'],
   },
   {
     name: 'Chess Engine',
