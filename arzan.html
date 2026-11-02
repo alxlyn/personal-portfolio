@@ -39,9 +39,9 @@
         rate are saved at checkout.
       </p>
       <p>
-        Nothing gets bought until the payment has gone through. An operator then claims the order in the staff console
-        and buys it, a carrier takes it from there, and a background job tracks the parcel from the warehouse in China
-        to the pickup point.
+        An operator claims the order in the staff console, which can happen before the customer pays, but nothing gets
+        bought until the payment has gone through. The operator then buys the goods, a carrier takes the parcel from
+        there, and a background job tracks it from the warehouse in China to the pickup point.
       </p>
 
       <h2>Architecture</h2>
@@ -74,7 +74,7 @@
 
       <h2>Two operators claiming one order</h2>
       <p>
-        Operators pick up paid orders by claiming them, then buy the goods by hand. In the first version, two operators
+        Operators pick up orders by claiming them, then buy the goods by hand once the order is paid. In the first version, two operators
         claiming the same order at the same moment could both read it as unclaimed, and both claims succeeded. Both
         would then have bought it, paying the supplier twice for one order.
       </p>
