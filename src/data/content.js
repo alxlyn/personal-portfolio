@@ -26,7 +26,7 @@ export const facts = [
 
 export const about = [
   'I spend most of my time on backend work, especially concurrency bugs, data integrity and security.',
-  "I've co-founded three startups. Temir AI is an AI quoting tool: 4 sales managers at 2 warehouses of a metal supplier, our pilot customer, used it to turn orders into priced quotes. I'm the sole engineer at Arzan, a cross-border e-commerce platform between China and Kyrgyzstan. I was the backend engineer at Tanish, a dating app for Central Asia that reached a TestFlight beta.",
+  "I've co-founded three startups. Temir AI is an AI quoting tool: 4 sales managers at 2 warehouses of a metal supplier, our pilot customer, use it to turn orders into priced quotes. I'm the sole engineer at Arzan, a cross-border e-commerce platform between China and Kyrgyzstan. I was the backend engineer at Tanish, a dating app for Central Asia that reached a TestFlight beta.",
 ];
 
 export const experience = [
@@ -69,7 +69,7 @@ export const projects = [
     logo: '/logos/temir.png',
     meta: 'AI quoting startup I co-founded',
     dates: 'Aug 2026 - Present',
-    text: 'Built the product for our pilot customer, a metal supplier, where 4 sales managers at 2 warehouses used it to turn orders sent as chat text, PDF, spreadsheet or photo into priced quotes. Kept the LLM from setting quote prices: order parsing returns line items, and unit prices come from the catalog.',
+    text: 'Built the product for our pilot customer, a metal supplier, where 4 sales managers at 2 warehouses use it to turn orders sent as chat text, PDF, spreadsheet or photo into priced quotes. Kept the LLM from setting quote prices: order parsing returns line items, and unit prices come from the catalog.',
     stack: ['JavaScript', 'Anthropic API', 'PostgreSQL'],
   },
   {
