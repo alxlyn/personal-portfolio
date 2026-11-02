@@ -1,0 +1,23 @@
+.list {
+  display: grid;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 6px 16px;
+  align-items: baseline;
+}
+
+.label {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 30em) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

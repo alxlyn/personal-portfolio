@@ -1,0 +1,27 @@
+.section {
+  padding-block: clamp(40px, 4.5vw, 64px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 56px);
+}
+
+.title {
+  color: var(--ink);
+  font-size: var(--size-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.body {
+  min-width: 0;
+}
+
+@media (max-width: 52em) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

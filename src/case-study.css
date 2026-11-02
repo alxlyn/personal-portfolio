@@ -1,0 +1,155 @@
+@import './index.css';
+
+.band {
+  padding-top: clamp(32px, 6vh, 56px);
+}
+
+.band h1 {
+  color: var(--ink);
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  font-weight: 650;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.back {
+  margin-bottom: clamp(24px, 5vh, 44px);
+  font-size: var(--size-small);
+  font-weight: 500;
+}
+
+.dateline {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: var(--size-small);
+  font-weight: 500;
+}
+
+.subtitle {
+  max-width: 62ch;
+  margin-top: 12px;
+}
+
+.lost {
+  display: grid;
+  align-content: center;
+  min-height: 100svh;
+  padding-top: 0;
+}
+
+.back-home {
+  margin-top: 14px;
+  font-weight: 500;
+}
+
+.article {
+  padding-block: 8px clamp(64px, 11vh, 104px);
+}
+
+.article h2 {
+  margin-top: 56px;
+  color: var(--ink);
+  font-size: var(--size-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.article h2 + p,
+.article h2 + ul,
+.article h2 + .stack {
+  margin-top: 10px;
+}
+
+.article p + p,
+.article p + ul,
+.article ul + p,
+.article .stack + p {
+  margin-top: 12px;
+}
+
+.article ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.article li::marker {
+  color: var(--pink);
+}
+
+.article code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--tint);
+  color: var(--ink);
+}
+
+.footer {
+  color: var(--muted);
+}
+
+.shot {
+  margin-top: 20px;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.shot-narrow img {
+  max-width: 460px;
+}
+
+.shot figcaption {
+  max-width: 62ch;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+  margin-block: 16px;
+}
+
+.stack div {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 0 16px;
+}
+
+.stack dt {
+  color: var(--ink);
+  font-size: var(--size-small);
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.footer {
+  margin-top: 64px;
+}
+
+@media (max-width: 30em) {
+  .stack div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .shots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

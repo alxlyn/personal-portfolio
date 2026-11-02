@@ -1,0 +1,6 @@
+.text {
+  display: grid;
+  gap: 16px;
+  max-width: 44em;
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+}

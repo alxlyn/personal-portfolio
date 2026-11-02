@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fcf9f7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Tanish - Case Study | Aleksei Lian</title>
+    <link rel="canonical" href="https://alekseilian.com/tanish" />
+    <link rel="stylesheet" href="/src/case-study.css" />
+    <meta name="description" content="Case study: co-founding Tanish, a dating app for Central Asia. FastAPI and PostgreSQL backend with 2,600+ tests, a React Native iOS app shipped to a TestFlight beta, face-liveness verification, LLM scoring and 4 languages." />
+    <meta property="og:title" content="Tanish - Case Study | Aleksei Lian" />
+    <meta property="og:description" content="How I built a dating app for Central Asia and shipped it to a TestFlight beta." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alekseilian.com/tanish" />
+    <meta property="og:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:creator" content="@_alxlyn" />
+  </head>
+  <body>
+    <header class="band">
+      <div class="page">
+        <p class="back enter"><a href="/">Back to alekseilian.com</a></p>
+        <h1 class="enter" style="--i: 1">Tanish - a dating app for Central Asia</h1>
+        <p class="dateline enter" style="--i: 2">Case study, Apr - Aug 2026</p>
+        <p class="subtitle enter" style="--i: 3">
+          I co-founded Tanish as the backend engineer, built the product end to end and shipped it to a TestFlight beta.
+          The code is private, so this page covers the engineering. I can walk through the code on a call.
+        </p>
+      </div>
+    </header>
+    <main class="page article">
+      <h2>Context</h2>
+      <p>
+        Western dating apps don't translate well to Central Asia. None of the big ones ship Kyrgyz, and family
+        reputation and safety concerns make women cautious about being visible on a swipe app. Tanish is a
+        Kyrgyzstan-first dating app built around a staged "journey": matches move through challenges and
+        conversation stages toward a real date.
+      </p>
+      <p>
+        I co-founded it and, from April to August 2026, built the product end to end: the backend, the iOS app,
+        the infrastructure and the release pipeline.
+      </p>
+      <figure class="shot">
+        <div class="shots">
+          <img
+            src="/screens/tanish-inbox.png"
+            width="780"
+            height="1688"
+            loading="lazy"
+            alt="The Tanish inbox with seven test matches, six of them labeled with a journey stage from 1/5 to 5/5."
+          />
+          <img
+            src="/screens/tanish-challenge.png"
+            width="780"
+            height="1688"
+            loading="lazy"
+            alt="A challenge screen: both answers to the first question are shown, and the second question waits for this user's answer."
+          />
+          <img
+            src="/screens/tanish-compatibility.png"
+            width="780"
+            height="1688"
+            loading="lazy"
+            alt="The compatibility reveal: a 96 percent score, shared traits and two voice notes."
+          />
+        </div>
+        <figcaption>
+          The app's code running in a browser with a local test account and generated photos: matches at each journey
+          stage, a challenge and the compatibility reveal.
+        </figcaption>
+      </figure>
+
+      <h2>Architecture</h2>
+      <dl class="stack">
+        <div>
+          <dt>API</dt>
+          <dd>FastAPI, async SQLAlchemy 2.0 and Pydantic v2, running as a web service and a background worker</dd>
+        </div>
+        <div>
+          <dt>Data</dt>
+          <dd>PostgreSQL with Alembic migrations applied before each release, and Redis for rate limiting and caching</dd>
+        </div>
+        <div>
+          <dt>Realtime</dt>
+          <dd>WebSocket chat and push notifications</dd>
+        </div>
+        <div>
+          <dt>Mobile</dt>
+          <dd>React Native (Expo) iOS app, with EAS builds to TestFlight</dd>
+        </div>
+        <div>
+          <dt>Media</dt>
+          <dd>S3-compatible object storage, presigned upload and download URLs, and a moderation pipeline</dd>
+        </div>
+        <div>
+          <dt>Trust</dt>
+          <dd>AWS Rekognition face liveness, OpenAI moderation API and JWT auth</dd>
+        </div>
+      </dl>
+
+      <h2>Face verification</h2>
+      <p>
+        Fake profiles are a serious problem for a dating app, so I added face-liveness verification with AWS
+        Rekognition. The backend creates a liveness session and gives the device short-lived STS credentials that
+        can only start the Face Liveness stream. Results are fetched on the server with the backend's own
+        credentials, so no long-lived AWS keys reach the client.
+      </p>
+      <ul>
+        <li>
+          Rekognition returns a wide age band, so approval requires its lower bound to be 18 or over. Anyone ambiguous
+          goes to ID verification instead of being rejected automatically. Only a band entirely under 13 goes straight
+          to manual review.
+        </li>
+        <li>
+          The liveness photo is soft-matched against profile photos. A mismatch creates a non-blocking flag for admin
+          review and doesn't reject anyone, so a bad match alone can't lock out a real user.
+        </li>
+      </ul>
+
+      <h2>The upload bug that broke a TestFlight build</h2>
+      <p>
+        Build 3 shipped with a "picture upload error" for every user. The cause was our storage provider's
+        S3-compatible layer, which rejected presigned <code>POST</code> uploads outright and has no object tagging.
+      </p>
+      <ul>
+        <li>I switched all media uploads to presigned <code>PUT</code> signed over bucket and key alone, because a signed content type has to match the client's header byte for byte.</li>
+        <li>We used tagging to track unconfirmed uploads, so I replaced it with a janitor job that cross-references storage against the database and deletes orphans.</li>
+        <li>I tested the fix end to end against production storage before the next build: ticket, PUT, register, signed GET and delete.</li>
+        <li>Build 4 then exposed the next bug: full-resolution photos hit Rekognition's 5 MB limit or ran past the app's 15-second timeout. Resizing on the client fixed it, and I lengthened the register timeout for headroom.</li>
+      </ul>
+
+      <h2>Hitting our OpenAI quota in production</h2>
+      <p>
+        Matches answer challenge questions, and an LLM scores the answers and shifts the pair's compatibility score.
+        When our OpenAI account hit a quota wall in production, scoring fell back to the quiz-based compatibility value
+        and users never saw an error. Moderation and transcription failed too, and content stayed visible while they did.
+      </p>
+      <p>
+        The scoring fallback was designed. The moderation recovery wasn't: failed jobs were never retried, because arq only
+        re-queues on its own <code>Retry</code> signal. I added real retries and an hourly
+        sweep that re-screens chat messages and voice notes for up to 7 days.
+      </p>
+      <p>
+        Feature calls like answer scoring and the place picker fail open, so an AI outage degrades the experience
+        without taking down a core flow. Moderation and transcription never record a pass they didn't run, so on chat
+        and voice an outage delays screening instead of skipping it. The incident cost us a day of scoring and
+        moderation, and the rest of the app kept working.
+      </p>
+
+      <h2>Auth, rewritten before launch</h2>
+      <p>
+        We had already moved from passwords to phone and SMS OTP. Before we had real users, expected SMS cost and
+        carrier deliverability across Central Asia pushed me to move the whole auth stack to email OTP (Twilio Verify's
+        email channel and SendGrid).
+      </p>
+      <ul>
+        <li>With no real users yet it was a clean swap: one PR, with 1,500+ backend tests passing.</li>
+        <li>Disposable-email domains are blocked at signup.</li>
+        <li>
+          Later, an HMAC-keyed ledger made blocks survive account deletion. Deleting an account and signing up again
+          with the same address doesn't put a harasser back in a victim's feed, and the raw email isn't kept.
+        </li>
+        <li>An address scrubbed under a legal hold can't re-register either, because the same kind of ledger keeps only its HMAC.</li>
+      </ul>
+
+      <h2>Four languages</h2>
+      <p>
+        The app ships in English, Russian, Kyrgyz and Kazakh. The Kyrgyz came from a human translator's document. I
+        matched 500+ translated strings onto the existing Russian catalog with a script, tracked the 131 gaps that fall
+        back to Russian in a checked-in file, and kept interpolation tokens intact so nothing crashes at render.
+      </p>
+
+      <h2>Testing</h2>
+      <ul>
+        <li>2,600+ backend tests and 800+ frontend tests.</li>
+        <li>Alembic migrations are applied before each release, and a pre-deploy hook is committed for Git-triggered deploys.</li>
+      </ul>
+
+      <h2>Status</h2>
+      <p>
+        Tanish reached a TestFlight beta with its production backend deployed. I worked on it from April to August 2026,
+        and now I build <a href="/arzan">Arzan</a> as its sole engineer.
+      </p>
+
+      <footer class="footer">
+        Want a code walkthrough? Message me on
+        <a href="https://linkedin.com/in/aleksei-lian">LinkedIn</a>.
+      </footer>
+    </main>
+  </body>
+</html>

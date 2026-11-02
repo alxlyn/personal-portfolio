@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fcf9f7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Arzan - Case Study | Aleksei Lian</title>
+    <link rel="canonical" href="https://alekseilian.com/arzan" />
+    <link rel="stylesheet" href="/src/case-study.css" />
+    <meta name="description" content="Case study: Arzan, a pre-launch cross-border e-commerce platform between China and Kyrgyzstan. FastAPI and PostgreSQL API with 2,300+ tests, a React staff console and a React Native app." />
+    <meta property="og:title" content="Arzan - Case Study | Aleksei Lian" />
+    <meta property="og:description" content="The engineering behind Arzan, a pre-launch e-commerce platform between China and Kyrgyzstan." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alekseilian.com/arzan" />
+    <meta property="og:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://alekseilian.com/og.png" />
+    <meta name="twitter:creator" content="@_alxlyn" />
+  </head>
+  <body>
+    <header class="band">
+      <div class="page">
+        <p class="back enter"><a href="/">Back to alekseilian.com</a></p>
+        <h1 class="enter" style="--i: 1">Arzan - online shopping from China to Kyrgyzstan</h1>
+        <p class="dateline enter" style="--i: 2">Case study, May 2026 - Present</p>
+        <p class="subtitle enter" style="--i: 3">
+          I co-founded Arzan and I'm its sole engineer. It's pre-launch, so every bug on this page was caught and fixed
+          before launch. The code is private, so this page covers the engineering. I can walk through the code on a call.
+        </p>
+      </div>
+    </header>
+    <main class="page article">
+      <h2>Context</h2>
+      <p>
+        Arzan lets customers in Kyrgyzstan order products from China. A customer browses a curated catalog or searches a
+        Chinese marketplace, signs in with an SMS code, and checks out to a pickup point. The order's totals and exchange
+        rate are saved at checkout.
+      </p>
+      <p>
+        Nothing gets bought until the payment has gone through. An operator then claims the order in the staff console
+        and buys it, a carrier takes it from there, and a background job tracks the parcel from the warehouse in China
+        to the pickup point.
+      </p>
+
+      <h2>Architecture</h2>
+      <dl class="stack">
+        <div>
+          <dt>API</dt>
+          <dd>Python 3.12, FastAPI and Pydantic v2, with 90+ endpoints</dd>
+        </div>
+        <div>
+          <dt>Data</dt>
+          <dd>PostgreSQL, async SQLAlchemy 2.0 and Alembic, with Redis for rate limits and the search cache</dd>
+        </div>
+        <div>
+          <dt>Jobs</dt>
+          <dd>Eight scheduled jobs with no message broker, each limited to one running copy by a PostgreSQL advisory lock</dd>
+        </div>
+        <div>
+          <dt>Staff</dt>
+          <dd>React 19, TypeScript, TanStack Query and Tailwind, built with Vite</dd>
+        </div>
+        <div>
+          <dt>Mobile</dt>
+          <dd>React Native with Expo and expo-router</dd>
+        </div>
+        <div>
+          <dt>Infra</dt>
+          <dd>OpenTofu for AWS (ECS Fargate, RDS, ElastiCache, CloudFront, WAF), validated and waiting for launch</dd>
+        </div>
+      </dl>
+
+      <h2>Two operators claiming one order</h2>
+      <p>
+        Operators pick up paid orders by claiming them, then buy the goods by hand. In the first version, two operators
+        claiming the same order at the same moment could both read it as unclaimed, and both claims succeeded. Both
+        would then have bought it, paying the supplier twice for one order.
+      </p>
+      <p>
+        The claim now loads the order with a row lock (<code>SELECT ... FOR UPDATE</code>), so the second operator waits
+        for the first and then gets a 409. A test inspects the code and fails if any staff action on an order stops
+        taking that lock.
+      </p>
+      <figure class="shot shot-narrow">
+        <img
+          src="/screens/arzan-orders.png"
+          width="1220"
+          height="1512"
+          loading="lazy"
+          alt="Arzan's staff console in Russian: a list of nine test orders with their statuses and totals. Three of them show which operator holds the order."
+        />
+        <figcaption>
+          The staff console, running locally with test data. It's in Russian, and the red lines show which operator holds
+          each order.
+        </figcaption>
+      </figure>
+
+      <h2>A commit that ran after the response</h2>
+      <p>
+        The database session was a request-scoped FastAPI dependency, and that scope commits after the response has been
+        sent. If the database failed over in that gap, a customer would see a 200 for an order that was then rolled back.
+      </p>
+      <p>
+        Moving the dependency to <code>scope="function"</code> runs the commit before the response goes out, so a failed
+        commit reaches the client as an error. <code>test_db_session.py</code> covers the order of the two.
+      </p>
+
+      <h2>A row lock that disappeared halfway</h2>
+      <p>
+        <code>PUT /cart</code> rewrites the basket while holding a lock on the cart, and it reprices lines through a
+        billed supplier API. To avoid tying up a database connection during those calls, the code called
+        <code>release_connection()</code>, which is a <code>session.commit()</code>. So the first billed line dropped the
+        lock and committed the deleted lines on their own, and a checkout running at that moment could have charged for
+        a half-rewritten basket.
+      </p>
+      <p>
+        The work now runs in two phases: all the billed calls first, with no lock and no writes, then one locked
+        transaction for the writes. A later change brought the same mistake back, so another test now inspects the code
+        to stop it from returning.
+      </p>
+
+      <h2>Refunds that cleared the wrong debt</h2>
+      <p>
+        Orders that owe a customer money stay in a staff queue until they're paid back. The first check only asked whether
+        the order had any refund, so a 1 som refund would have cleared a 1,600 som shortfall.
+      </p>
+      <p>
+        Comparing amounts wasn't enough either. A refund row couldn't say which debt it paid, so a 3,500 som refund on a
+        customer's claim would have cleared a 3,300 som shortfall on the same order. Refunds now record their kind, so that
+        claim refund no longer counts against the shortfall. A claim records when a manager settled it, and the queue reads
+        that instead of working it out from refund totals.
+      </p>
+      <figure class="shot">
+        <img
+          src="/screens/arzan-refund.png"
+          width="1920"
+          height="296"
+          loading="lazy"
+          alt="The refund form in Russian, with fields for the amount, what the refund is for and the transaction number."
+        />
+        <figcaption>The refund form, with test data. The second field sets the refund's kind.</figcaption>
+      </figure>
+
+      <h2>Screening prohibited goods</h2>
+      <p>
+        Items are screened against a list of prohibited goods. A rule with several words only matched them in one order,
+        so the same banned item could pass with the words of its title swapped.
+      </p>
+      <p>
+        The first fix used regex lookaheads and made screening far slower. On my laptop, with the item from the suite's
+        latency test, it went from about 3 ms to over 500 ms. The version that stayed drops the lookaheads and runs a quick
+        check per rule first, which brought it back to about 4 ms. A test now fails if screening one item takes more than
+        150 ms.
+      </p>
+
+      <h2>A migration CI only ran on an empty database</h2>
+      <p>
+        One migration removed duplicate cart lines and then added a unique index. The cleanup compared SKUs with
+        <code>IS NOT DISTINCT FROM</code>, and the index used <code>COALESCE(variant_sku, '')</code>. CI ran it on an empty
+        database, so it passed. A cart holding the same item with a NULL SKU and an empty one would have deleted nothing
+        and then failed on the unique index, and the deploy couldn't have started.
+      </p>
+      <p>
+        The migration is fixed, and CI now also seeds rows before migrating (<code>migration_data_check.py</code>).
+      </p>
+
+      <h2>Keeping bad data out</h2>
+      <ul>
+        <li>
+          The schema has 50 CHECK constraints on money, quantities and statuses. For example,
+          <code>ck_cart_items_qty</code> keeps a quantity between 1 and 99 and <code>ck_fx_rates_rate</code> requires a
+          positive rate. The first one, on <code>orders.payment_status</code>, caught four test fixtures writing
+          "succeeded", which is a status for payments and isn't valid on an order.
+        </li>
+        <li>
+          Checkout sends an attempt ID, and a unique index on user and attempt holds it to one order. A retried request
+          gets the first order back, and the same ID with a different total gets a 409.
+        </li>
+      </ul>
+
+      <h2>Smaller bugs</h2>
+      <ul>
+        <li>
+          Expo's push API returns a ticket, which only means it accepted the message. Reading that as delivery meant an
+          uninstalled app counted as reached, so the "ready for pickup" SMS fallback never went out. The code now checks
+          Expo's receipts.
+        </li>
+        <li>
+          The admin summary report passed order IDs back as an <code>IN</code> list, which returns a 500 past asyncpg's
+          limit of 32,767 bind parameters. It uses a subquery now.
+        </li>
+      </ul>
+
+      <h2>Testing</h2>
+      <ul>
+        <li>2,300+ backend tests, run in CI on both SQLite and PostgreSQL, plus 645 staff console tests and 526 mobile tests.</li>
+        <li>
+          The suite builds its tables with <code>create_all</code>, so a model that disagrees with its migration would
+          pass every test. CI runs <code>alembic check</code> to catch that, and it has caught a real mismatch.
+        </li>
+        <li>Alembic doesn't compare CHECK constraints, so a separate script checks that all 50 exist in the migrated database under the same names and that their allowed-value lists match.</li>
+      </ul>
+
+      <h2>Status</h2>
+      <p>
+        Arzan is pre-launch and I'm still building it. These fixes are covered by tests, but haven't run under real traffic yet.
+      </p>
+
+      <footer class="footer">
+        Want a code walkthrough? Message me on
+        <a href="https://linkedin.com/in/aleksei-lian">LinkedIn</a>. There's also a case study on
+        <a href="/tanish">Tanish</a>.
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+.hero {
+  padding-block: clamp(48px, 9vh, 104px) clamp(56px, 10vh, 112px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+}
+
+.name {
+  color: var(--ink);
+  font-size: clamp(3rem, 1.7rem + 4.4vw, 5rem);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.role {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+}
+
+.intro {
+  max-width: 34em;
+  margin-top: 20px;
+  font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  line-height: 1.55;
+}
+
+.availability {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 5px 13px;
+  border-radius: 17px;
+  background: var(--pink-tint);
+  color: var(--violet);
+  font-size: var(--size-small);
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.resume {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding-inline: 26px;
+  border-radius: 12px;
+  background: var(--violet);
+  color: var(--marshmallow);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    transform 140ms var(--ease-out);
+}
+
+.resume:active {
+  transform: scale(0.97);
+}
+
+.card {
+  padding: 8px clamp(20px, 2.4vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.fact {
+  padding-block: 15px;
+}
+
+.fact + .fact {
+  border-top: 1px solid var(--line);
+}
+
+.fact dt {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.fact dd {
+  margin-top: 2px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .resume:hover {
+    background: var(--ink-hover);
+  }
+}
+
+@media (max-width: 52em) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media print {
+  .resume {
+    display: none;
+  }
+}

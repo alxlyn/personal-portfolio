@@ -1,0 +1,198 @@
+@import '@fontsource-variable/hanken-grotesk/wght.css';
+
+:root {
+  color-scheme: light;
+
+  --marshmallow: #fcf9f7;
+  --violet: #2e1272;
+  --pink: #ff8fc7;
+
+  --surface: #ffffff;
+  --tint: #f3effa;
+  --pink-tint: #ffeaf4;
+  --ink: var(--violet);
+  --ink-hover: #43269a;
+  --text: #40356a;
+  --muted: #675d85;
+  --line: #2e12721f;
+  --line-strong: #2e127247;
+  --underline: #2e127240;
+  --scrollbar: #2e127233;
+
+  --font: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
+
+  --size-small: 0.9375rem;
+  --size-body: 1.0625rem;
+  --size-title: 1.25rem;
+  --size-heading: clamp(1.625rem, 1.4rem + 0.8vw, 2rem);
+
+  --gutter: clamp(20px, 5vw, 48px);
+  --page: 72rem;
+  --nav-height: 4rem;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-color: var(--scrollbar) transparent;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+body {
+  min-width: 320px;
+  background: var(--marshmallow);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--size-body);
+  font-weight: 400;
+  line-height: 1.6;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.8125rem;
+}
+
+::selection {
+  background: var(--pink);
+  color: var(--violet);
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+a {
+  padding-block: 0.25em;
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--underline);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-color: var(--ink);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--page) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.page {
+  width: 100%;
+  max-width: calc(44rem + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--violet);
+  color: var(--marshmallow);
+  font-size: var(--size-small);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-property: color, background-color, border-color, text-decoration-color !important;
+  }
+
+  :active {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: enter 480ms var(--ease-out) backwards;
+    animation-delay: calc(var(--i, 0) * 60ms + 40ms);
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}

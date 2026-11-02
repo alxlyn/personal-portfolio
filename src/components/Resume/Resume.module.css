@@ -1,0 +1,112 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--violet);
+}
+
+.dialog::backdrop {
+  background: transparent;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: #1e0a52c7;
+}
+
+.scroller {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(10px, 2.4vh, 24px) max(12px, env(safe-area-inset-right, 0px)) 48px max(12px, env(safe-area-inset-left, 0px));
+}
+
+.stage {
+  width: 100%;
+  max-width: 51rem;
+  margin-inline: auto;
+}
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.download,
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--marshmallow);
+  color: var(--violet);
+  transition:
+    background-color 150ms ease,
+    transform 140ms var(--ease-out);
+}
+
+.download {
+  gap: 8px;
+  padding: 0 18px;
+  font-size: var(--size-small);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.close {
+  width: 44px;
+}
+
+.download:active,
+.close:active {
+  transform: scale(0.97);
+}
+
+.bar :focus-visible {
+  outline-color: var(--pink);
+}
+
+.sheet {
+  aspect-ratio: 816 / 1056;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 24px 64px #12053c59;
+  transform-origin: top center;
+}
+
+.sheet img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .download:hover,
+  .close:hover {
+    background: var(--pink-tint);
+  }
+}
+
+@media print {
+  .dialog {
+    display: none;
+  }
+}

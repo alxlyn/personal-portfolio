@@ -1,0 +1,49 @@
+.footer {
+  padding-block: clamp(32px, 4vw, 48px) clamp(36px, 5vw, 56px);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 32px;
+}
+
+.name {
+  color: var(--ink);
+  font-size: var(--size-title);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.line {
+  color: var(--muted);
+  font-size: var(--size-small);
+}
+
+.contact {
+  display: inline-block;
+  padding-block: 8px;
+  font-size: var(--size-small);
+  font-weight: 600;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.resume {
+  padding-block: 12px;
+  font-size: var(--size-small);
+  font-weight: 600;
+}
+
+@media print {
+  .links {
+    display: none;
+  }
+}
