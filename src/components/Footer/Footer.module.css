@@ -22,6 +22,12 @@
   font-size: var(--size-small);
 }
 
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
 .contact {
   display: inline-block;
   padding-block: 8px;

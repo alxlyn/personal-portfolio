@@ -4,20 +4,23 @@ export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend Engineer',
   intro: 'I build backend systems and the products on top of them, mostly in Python, FastAPI and PostgreSQL. I study computer science at York University and have co-founded three startups.',
-  availability: 'Open to Summer 2027 internships in the US and Canada',
+  availability: 'Open to Summer 2027 internships anywhere in the US or Canada',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
   x: 'https://x.com/_alxlyn',
+  email: 'alekseilianv@gmail.com',
   resume: '/resume.pdf',
   resumeImage: '/resume.svg',
   privateCode: "Arzan, Tanish, Temir AI and Mendy are private repos. I'm glad to walk through the code on a call.",
   contact: 'Message me on LinkedIn',
+  emailLabel: 'Email me',
 };
 
 export const facts = [
   { label: 'Summer 2027 work status', value: 'Authorized to work in the US and Canada, no sponsorship needed' },
   { label: 'Studying', value: 'BSc Computer Science, York University' },
   { label: 'Graduating', value: 'December 2027' },
+  { label: 'Relocation', value: 'Open to relocating' },
   { label: 'Languages', value: 'Russian, English' },
 ];
 
@@ -81,7 +84,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026',
-    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Deployed to Google Cloud Run with Cloud SQL via Cloud Build, with GitHub Actions CI running 38 tests, 23 against a live PostgreSQL container.",
+    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Previously deployed to Google Cloud Run with Cloud SQL via Cloud Build, with GitHub Actions CI running 38 tests, 23 against a live PostgreSQL container.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker', 'GCP'],
   },
   {

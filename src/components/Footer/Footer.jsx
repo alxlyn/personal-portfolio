@@ -10,9 +10,14 @@ export default function Footer() {
         <div>
           <p className={styles.name}>{personal.name}</p>
           <p className={styles.line}>{personal.availability}</p>
-          <a className={styles.contact} href={personal.linkedin} target="_blank" rel="noopener noreferrer">
-            {personal.contact}
-          </a>
+          <div className={styles.contacts}>
+            <a className={styles.contact} href={personal.linkedin} target="_blank" rel="noopener noreferrer">
+              {personal.contact}
+            </a>
+            <a className={styles.contact} href={`mailto:${personal.email}`}>
+              {personal.email}
+            </a>
+          </div>
         </div>
         <div className={styles.links}>
           <ResumeLink className={styles.resume}>View resume</ResumeLink>

@@ -1,5 +1,3 @@
-import { spawnSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 
 const WIDTHS = [320, 375, 768, 1280, 1536];
@@ -128,33 +126,22 @@ test.describe('the page', () => {
     }
   });
 
-  test('says how to reach me without listing an email', async ({ page }) => {
+  test('says how to reach me: LinkedIn and one email', async ({ page }) => {
     await page.goto('/');
     const contacts = page.getByRole('link', { name: 'Message me on LinkedIn' });
     await expect(contacts).toHaveCount(2);
     for (const contact of await contacts.all()) {
       await expect(contact).toHaveAttribute('href', 'https://linkedin.com/in/aleksei-lian');
     }
-    const text = await page.evaluate(() => document.body.innerText);
-    expect(text).not.toContain('@');
+    await expect(page.getByRole('link', { name: 'alekseilianv@gmail.com' })).toHaveAttribute('href', 'mailto:alekseilianv@gmail.com');
   });
 
-  test('the resume has no email address or mail link', async () => {
-    expect(readFileSync(new URL('../public/resume.svg', import.meta.url), 'utf8')).not.toMatch(/mailto|gmail/);
-    const pdf = spawnSync('pdftotext', ['public/resume.pdf', '-'], { encoding: 'utf8' });
-    test.skip(Boolean(pdf.error), 'pdftotext is not installed');
-    expect(pdf.stdout).toContain('Aleksei Lian');
-    expect(pdf.stdout).not.toContain('@');
-    expect(pdf.stdout.split('\n').find((line) => line.includes('linkedin.com'))).not.toContain('Toronto');
-  });
-
-  test('gives no email address anywhere', async ({ page }) => {
-    for (const path of PAGES) {
-      await page.goto(path);
-      const html = await page.evaluate(() => document.documentElement.outerHTML);
-      expect(html, path).not.toContain('mailto:');
-      expect(html, path).not.toContain('@gmail');
-    }
+  test('the email link opens the mail app, not a new tab', async ({ page }) => {
+    await page.goto('/');
+    const link = page.getByRole('link', { name: 'Email', exact: true }).first();
+    await expect(link).toHaveAttribute('href', 'mailto:alekseilianv@gmail.com');
+    await expect(link).not.toHaveAttribute('target', '_blank');
+    await expect(link.locator('svg')).toBeVisible();
   });
 
   test('prints without its controls', async ({ page }) => {
