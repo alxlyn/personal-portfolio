@@ -53,7 +53,7 @@ export const experience = [
     meta: 'Dating app for Central Asia, iOS beta',
     dates: 'Apr - Aug 2026',
     bullets: [
-      'Shipped an iOS app to a TestFlight beta: FastAPI/PostgreSQL backend, WebSocket chat, React Native client.',
+      'Built an iOS app (TestFlight beta, 2 testers): FastAPI/PostgreSQL backend, WebSocket chat, React Native client.',
       'Designed JWT auth with 15-minute access tokens and rotating refresh tokens that revoke the chain on reuse.',
       'Verified real users with AWS Rekognition face liveness, using STS credentials that can only start the stream.',
       "Closed a hole where anyone with the project's public key could read and write user tables through Supabase's auto-generated API, by enabling deny-by-default row-level security.",
@@ -84,7 +84,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026',
-    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Previously deployed to Google Cloud Run with Cloud SQL via Cloud Build, with GitHub Actions CI running 38 tests, 23 against a live PostgreSQL container.",
+    text: "An async URL shortener where two simultaneous requests can't get the same short code: inserts retry on a primary-key conflict instead of check-then-insert. Previously on Google Cloud Run; GitHub Actions CI runs 38 tests, 23 against a live PostgreSQL container.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker', 'GCP'],
   },
   {
@@ -110,6 +110,6 @@ export const languages = [
 export const skills = [
   { label: 'Languages', items: ['Python', 'SQL', 'TypeScript', 'JavaScript', 'Java', 'C'] },
   { label: 'Frameworks', items: ['FastAPI', 'SQLAlchemy', 'Pydantic', 'Alembic', 'pytest', 'React', 'React Native', 'OpenAI API', 'Anthropic API'] },
-  { label: 'Data & Cloud', items: ['PostgreSQL', 'Redis', 'SQLite', 'AWS', 'GCP (Cloud Run, Cloud SQL)', 'OpenTofu'] },
+  { label: 'Data & Cloud', items: ['PostgreSQL', 'Redis', 'SQLite', 'AWS', 'GCP (Cloud Run)', 'OpenTofu'] },
   { label: 'Tools', items: ['Git', 'GitHub Actions', 'Docker', 'Linux', 'REST APIs', 'Claude Code'] },
 ];
