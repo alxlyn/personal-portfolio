@@ -9,28 +9,28 @@ export default function Hero() {
       <div className={`container ${styles.grid}`}>
         <div>
           <h1 className={`${styles.name} enter`}>{personal.name}</h1>
-          <p className={`${styles.role} enter`} style={{ '--i': 1 }}>
+          <p className={`${styles.role} enter i1`}>
             {personal.role}
           </p>
-          <p className={`${styles.intro} enter`} style={{ '--i': 2 }}>
+          <p className={`${styles.intro} enter i2`}>
             {personal.intro}
           </p>
-          <p className={`${styles.availability} enter`} style={{ '--i': 3 }}>
+          <p className={`${styles.availability} enter i3`}>
             {personal.availability}
           </p>
-          <div className={`${styles.actions} enter`} style={{ '--i': 4 }}>
+          <div className={`${styles.actions} enter i4`}>
             <ResumeLink className={styles.resume}>View resume</ResumeLink>
             <Social />
           </div>
-          <p className={`${styles.cases} enter`} style={{ '--i': 5 }}>
+          <p className={`${styles.cases} enter i5`}>
             Case studies: <a href="/arzan">Arzan</a> and <a href="/tanish">Tanish</a>
           </p>
-          <p className={`${styles.cases} enter`} style={{ '--i': 6 }}>
+          <p className={`${styles.cases} enter i6`}>
             Email: <a href={`mailto:${personal.email}`}>{personal.email}</a>
           </p>
         </div>
 
-        <aside className={`${styles.card} enter`} style={{ '--i': 3 }} aria-label="At a glance">
+        <aside className={`${styles.card} enter i3`} aria-label="At a glance">
           <dl className={styles.facts}>
             {facts.map(({ label, value }) => (
               <div key={label} className={styles.fact}>

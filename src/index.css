@@ -183,6 +183,15 @@ a {
   }
 }
 
+/* Stagger steps for .enter. Classes, not inline style attributes, so the
+   Content-Security-Policy can forbid inline styles. */
+.i1 { --i: 1; }
+.i2 { --i: 2; }
+.i3 { --i: 3; }
+.i4 { --i: 4; }
+.i5 { --i: 5; }
+.i6 { --i: 6; }
+
 @media (prefers-reduced-motion: no-preference) {
   .enter {
     animation: enter 480ms var(--ease-out) backwards;
