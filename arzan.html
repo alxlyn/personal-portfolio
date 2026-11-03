@@ -40,8 +40,8 @@
       </p>
       <p>
         An operator claims the order in the staff console, which can happen before the customer pays, but nothing gets
-        bought until the payment has gone through. Our buying agent then buys the goods (we're automating that handoff
-        with a scheduled job), a carrier takes the parcel from there, and a background job tracks it from the warehouse
+        bought until the payment has gone through. Our buying agent, a purchasing company in China, then buys the goods (I've built a scheduled job to automate that
+        handoff; it isn't live yet), a carrier takes the parcel from there, and a background job tracks it from the warehouse
         in China to the pickup point.
       </p>
 
@@ -77,7 +77,7 @@
       <p>
         Operators pick up orders by claiming them, then pass them to our buying agent once the order is paid. In the first version, two operators
         claiming the same order at the same moment could both read it as unclaimed, and both claims succeeded. Both
-        would then have bought it, paying the supplier twice for one order.
+        would then have sent it to be bought, so the supplier would have been paid twice for one order.
       </p>
       <p>
         The claim now loads the order with a row lock (<code>SELECT ... FOR UPDATE</code>), so the second operator waits

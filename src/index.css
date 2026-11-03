@@ -96,8 +96,9 @@ button {
   touch-action: manipulation;
 }
 
-[id] {
-  scroll-margin-top: var(--nav-height);
+html {
+  /* Keeps anchor targets and focused links clear of the sticky header. */
+  scroll-padding-top: calc(var(--nav-height) + 8px);
 }
 
 code {

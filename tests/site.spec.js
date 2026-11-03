@@ -174,10 +174,13 @@ test.describe('the page', () => {
 
   test('every logo loads', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    const broken = await page.$$eval('main img', (images) => images.filter((image) => !image.naturalWidth).map((image) => image.src));
-    expect(broken).toEqual([]);
-    expect(await page.locator('main img').count()).toBe(3);
+    const logos = page.locator('main img');
+    await expect(logos).toHaveCount(3);
+    // The logos are lazy-loaded, so each one only loads once it's scrolled into view.
+    for (const logo of await logos.all()) {
+      await logo.scrollIntoViewIfNeeded();
+      await expect.poll(() => logo.evaluate((node) => node.naturalWidth)).toBeGreaterThan(0);
+    }
   });
 
   test('case study screenshots load and say they use test data', async ({ page }) => {

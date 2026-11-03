@@ -14,7 +14,7 @@ const SECTIONS = [
 export default function Nav() {
   const [active, setActive] = useState(null);
 
-  // Marks the last section above the 35% line. The bottom sections can't scroll that far,
+  // Marks the last section whose top has reached the bar. The bottom sections can't scroll that far,
   // so the end of the page counts as the last section unless a nav link landed on another one.
   useEffect(() => {
     const sections = SECTIONS.map(({ id }) => document.getElementById(id));
@@ -22,7 +22,7 @@ export default function Nav() {
 
     const update = () => {
       frame = 0;
-      const line = innerHeight * 0.35;
+      const line = document.querySelector('header').offsetHeight + 24;
       const passed = sections.filter((section) => section.getBoundingClientRect().top <= line);
       const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
       if (atEnd) {
