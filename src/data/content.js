@@ -2,7 +2,7 @@
 
 export const personal = {
   name: 'Aleksei Lian',
-  role: 'Backend Engineer',
+  role: 'Backend engineer, CS student at York University (graduating Dec 2027)',
   intro: "I build backends in Python, FastAPI and PostgreSQL. I'm the sole engineer at Arzan, a pre-launch e-commerce startup, where I fixed a race that let two operators buy the same order. I also co-founded Temir AI, which 4 sales managers at a metal supplier use to turn orders into priced quotes.",
   availability: 'Open to Summer 2027 internships anywhere in the US or Canada',
   github: 'https://github.com/alxlyn',
@@ -18,8 +18,7 @@ export const personal = {
 
 export const facts = [
   { label: 'Work status', value: 'US: authorized, no sponsorship needed now or in the future. Canada: eligible to work full-time in Summer 2027.' },
-  { label: 'Studying', value: 'BSc Computer Science, York University' },
-  { label: 'Graduating', value: 'December 2027' },
+  { label: 'Availability', value: 'Full-time for a Summer 2027 internship' },
   { label: 'Relocation', value: 'Open to relocating' },
 ];
 
@@ -38,11 +37,11 @@ export const experience = [
       'Built a 90+ endpoint FastAPI/PostgreSQL API, React staff console, and React Native app as the sole engineer.',
       'Fixed a race condition that let two operators buy the same order on Taobao, using PostgreSQL row locks.',
       'Made checkout idempotent with a unique database key, so a retried request never places a second order.',
-      'Enforced money, quantity, and status rules with 50 PostgreSQL CHECK constraints that reject invalid data.',
-      'Set up GitHub Actions CI that runs the 2,300+ test backend suite on both SQLite and PostgreSQL.',
+      'Enforced allowed money, quantity, and status values with 50 PostgreSQL CHECK constraints.',
+      'Set up GitHub Actions CI that runs the 2,300+ test backend suite on SQLite and PostgreSQL, plus an alembic check that caught a real model/migration mismatch.',
     ],
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'TypeScript', 'React', 'React Native'],
-    link: { label: 'Read the case study', href: '/arzan' },
+    link: { label: 'Read the Arzan case study', href: '/arzan' },
   },
   {
     company: 'Tanish',
@@ -54,10 +53,10 @@ export const experience = [
       'Built an iOS app (TestFlight beta, 2 testers): FastAPI/PostgreSQL backend, WebSocket chat, React Native client.',
       'Designed JWT auth with 15-minute access tokens and rotating refresh tokens that revoke the chain on reuse.',
       'Added AWS Rekognition face-liveness checks, using STS credentials that can only start the liveness stream.',
-      "Closed a hole where anyone with the project's public key could read and write user tables through Supabase's auto-generated API, by enabling deny-by-default row-level security.",
+      "Found that anyone with the project's public key could read and write user tables through Supabase's auto-generated API, and enabled deny-by-default row-level security on them.",
     ],
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis', 'React Native', 'AWS'],
-    link: { label: 'Read the case study', href: '/tanish' },
+    link: { label: 'Read the Tanish case study', href: '/tanish' },
   },
 ];
 
@@ -67,7 +66,7 @@ export const projects = [
     logo: '/logos/temir.png',
     meta: 'AI quoting startup I co-founded',
     dates: 'Aug 2026 - Present',
-    text: 'Built the product for our pilot customer, a metal supplier, where 4 sales managers at 2 warehouses use it to turn orders sent as chat text, PDF, spreadsheet or photo into priced quotes. Kept the LLM from setting quote prices: order parsing returns line items, and unit prices come from the catalog.',
+    text: "Built the product for our pilot customer, a metal supplier, where 4 sales managers at 2 warehouses use it to turn orders sent as chat text, PDF, spreadsheet or photo into priced quotes. Kept prices out of the LLM's output: it maps each line to a catalog ID, prices come from the catalog, and inexact matches are flagged for a manager.",
     stack: ['JavaScript', 'Anthropic API', 'PostgreSQL'],
   },
   {
@@ -82,7 +81,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026',
-    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 38 tests, 23 against live PostgreSQL; an earlier Flask version ran on Cloud Run.",
+    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 64 tests against live PostgreSQL, including forced-collision and concurrency tests; an earlier Flask version ran on Cloud Run.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker'],
   },
   {

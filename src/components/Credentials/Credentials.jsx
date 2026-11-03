@@ -23,9 +23,9 @@ function Group({ title, items, across = false }) {
 
 export default function Credentials() {
   return (
-    <Section id="credentials" title="Credentials">
+    <Section id="credentials" title="Education">
       <div className={styles.groups}>
-        <Group title="Education" items={education} />
+        <Group title="Universities" items={education} />
         <Group title="Spoken languages" items={languages} across />
       </div>
     </Section>

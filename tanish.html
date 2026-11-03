@@ -110,12 +110,11 @@
       </p>
       <ul>
         <li>
-          Rekognition returns a wide age band, so approval requires its lower bound to be 18 or over. Anyone ambiguous
-          goes to ID verification instead of being rejected automatically. Only a band entirely under 13 goes straight
-          to manual review.
+          Rekognition returns a wide age band. Nobody is approved unless its lower bound is 18 or over; everyone else
+          goes to ID verification or human review instead of being rejected automatically.
         </li>
         <li>
-          The liveness photo is compared with the profile photos, and mismatches go to human review.
+          The liveness photo is compared with the profile photos, and a mismatch is flagged for an admin to review.
         </li>
       </ul>
 
@@ -131,11 +130,11 @@
         <li>Build 4 then exposed the next bug: full-resolution photos hit Rekognition's 5 MB limit or ran past the app's 15-second timeout. Resizing on the client fixed it, and I lengthened the register timeout for headroom.</li>
       </ul>
 
-      <h2>Hitting our OpenAI quota in production</h2>
+      <h2>Hitting our OpenAI quota during the beta</h2>
       <p>
         Matches answer challenge questions, and an LLM scores the answers and shifts the pair's compatibility score.
-        When our OpenAI account hit a quota wall in production, scoring fell back to the quiz-based compatibility value
-        and users never saw an error. Moderation and transcription failed too.
+        When our OpenAI account hit its quota during the beta, scoring fell back to the quiz-based compatibility value
+        and our testers never saw an error. Moderation and transcription failed too.
       </p>
       <p>
         The scoring fallback was designed. The moderation recovery wasn't: failed jobs were never retried, because arq only
@@ -181,7 +180,7 @@
       <h2>Status</h2>
       <p>
         Tanish reached a TestFlight beta, tested by 2 people, with its production backend deployed. I worked on it from April to August 2026,
-        and now I build <a href="/arzan">Arzan</a> as its sole engineer.
+        alongside <a href="/arzan">Arzan</a>, which I started in May as its sole engineer.
       </p>
 
       <footer class="footer">

@@ -10,7 +10,7 @@ export default function Experience() {
       <div className={styles.list}>
         {experience.map((job) => (
           <article key={job.company} className={styles.job}>
-            <img className={styles.logo} src={job.logo} width="56" height="56" alt="" />
+            <img className={styles.logo} src={job.logo} width="56" height="56" alt="" loading="lazy" decoding="async" />
             <div className={styles.head}>
               <div className={styles.top}>
                 <h3 className={styles.role}>{job.role}</h3>

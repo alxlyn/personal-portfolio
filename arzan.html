@@ -40,8 +40,9 @@
       </p>
       <p>
         An operator claims the order in the staff console, which can happen before the customer pays, but nothing gets
-        bought until the payment has gone through. The operator then buys the goods, a carrier takes the parcel from
-        there, and a background job tracks it from the warehouse in China to the pickup point.
+        bought until the payment has gone through. Our buying agent then buys the goods (we're automating that handoff
+        with a scheduled job), a carrier takes the parcel from there, and a background job tracks it from the warehouse
+        in China to the pickup point.
       </p>
 
       <h2>Architecture</h2>
@@ -56,7 +57,7 @@
         </div>
         <div>
           <dt>Jobs</dt>
-          <dd>Eight scheduled jobs with no message broker, each limited to one running copy by a PostgreSQL advisory lock</dd>
+          <dd>Eight scheduled jobs with no message broker, each limited to one running copy by a PostgreSQL advisory lock; jobs that claim rows use FOR UPDATE SKIP LOCKED</dd>
         </div>
         <div>
           <dt>Staff</dt>
@@ -74,7 +75,7 @@
 
       <h2>Two operators claiming one order</h2>
       <p>
-        Operators pick up orders by claiming them, then buy the goods by hand once the order is paid. In the first version, two operators
+        Operators pick up orders by claiming them, then pass them to our buying agent once the order is paid. In the first version, two operators
         claiming the same order at the same moment could both read it as unclaimed, and both claims succeeded. Both
         would then have bought it, paying the supplier twice for one order.
       </p>

@@ -25,6 +25,9 @@ export default function Hero() {
           <p className={`${styles.cases} enter`} style={{ '--i': 5 }}>
             Case studies: <a href="/arzan">Arzan</a> and <a href="/tanish">Tanish</a>
           </p>
+          <p className={`${styles.cases} enter`} style={{ '--i': 6 }}>
+            Email: <a href={`mailto:${personal.email}`}>{personal.email}</a>
+          </p>
         </div>
 
         <aside className={`${styles.card} enter`} style={{ '--i': 3 }} aria-label="At a glance">

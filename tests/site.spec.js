@@ -16,10 +16,6 @@ function watchErrors(page) {
 // Text contrast, measured on the rendered page.
 const measureContrast = () => {
   const toRgba = (value) => {
-    const canvas = document.createElement('canvas').getContext('2d');
-    canvas.fillStyle = value;
-    canvas.fillRect(0, 0, 1, 1);
-    canvas.getImageData(0, 0, 1, 1);
     const probe = document.createElement('canvas');
     probe.width = probe.height = 1;
     const context = probe.getContext('2d', { willReadFrequently: true });
@@ -115,9 +111,9 @@ test.describe('the page', () => {
     expect(html).not.toContain('fonts.googleapis.com');
   });
 
-  test('says who I am, what I did, my credentials and where to find me', async ({ page }) => {
+  test('says who I am, what I did, my education and where to find me', async ({ page }) => {
     await page.goto('/');
-    for (const name of ['About', 'Experience', 'Projects', 'Credentials', 'Skills']) {
+    for (const name of ['About', 'Experience', 'Projects', 'Education', 'Skills']) {
       await expect(page.getByRole('heading', { level: 2, name, exact: true })).toBeVisible();
     }
     await expect(page.getByRole('heading', { level: 1, name: 'Aleksei Lian' })).toBeVisible();
@@ -133,7 +129,11 @@ test.describe('the page', () => {
     for (const contact of await contacts.all()) {
       await expect(contact).toHaveAttribute('href', 'https://linkedin.com/in/aleksei-lian');
     }
-    await expect(page.getByRole('link', { name: 'alekseilianv@gmail.com' })).toHaveAttribute('href', 'mailto:alekseilianv@gmail.com');
+    const emails = page.getByRole('link', { name: 'alekseilianv@gmail.com' });
+    await expect(emails).toHaveCount(2); // hero and footer, same address
+    for (const email of await emails.all()) {
+      await expect(email).toHaveAttribute('href', 'mailto:alekseilianv@gmail.com');
+    }
   });
 
   test('the email link opens the mail app, not a new tab', async ({ page }) => {

@@ -11,7 +11,7 @@ export default function Projects() {
         {projects.map((project) => (
           <article key={project.name} className={styles.card} data-link={project.href ? 'true' : undefined}>
             <div className={styles.head}>
-              {project.logo && <img className={styles.logo} src={project.logo} width="44" height="44" alt="" />}
+              {project.logo && <img className={styles.logo} src={project.logo} width="44" height="44" alt="" loading="lazy" decoding="async" />}
               <div className={styles.heading}>
                 <h3 className={styles.name}>
                   {project.href ? (
