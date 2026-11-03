@@ -19,6 +19,11 @@
   font-weight: 500;
 }
 
+.back a {
+  display: inline-block;
+  padding-block: 10px;
+}
+
 .dateline {
   margin-top: 14px;
   color: var(--muted);

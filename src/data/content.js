@@ -4,7 +4,7 @@ export const personal = {
   name: 'Aleksei Lian',
   role: 'Backend engineer, CS student at York University (graduating Dec 2027)',
   intro: "I build backends in Python, FastAPI and PostgreSQL. I'm the sole engineer at Arzan, a pre-launch e-commerce startup, where I fixed a race in which two operators could claim one order and have it bought twice. I also co-founded Temir AI, which 4 sales managers at a metal supplier used to make about 70 quotes from August to October.",
-  availability: 'Open to Summer 2027 internships anywhere in the US or Canada',
+  availability: 'Open to Summer 2027 internships anywhere in the US or Canada. US: work authorized, no sponsorship needed.',
   github: 'https://github.com/alxlyn',
   linkedin: 'https://linkedin.com/in/aleksei-lian',
   x: 'https://x.com/_alxlyn',
@@ -18,7 +18,6 @@ export const personal = {
 
 export const facts = [
   { label: 'Work status', value: 'US: authorized, no sponsorship needed now or in the future. Canada: eligible to work full-time in Summer 2027.' },
-  { label: 'Availability', value: 'Full-time for a Summer 2027 internship' },
   { label: 'Relocation', value: 'Open to relocating' },
 ];
 
@@ -82,7 +81,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026, Nov 2026',
-    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 83 tests against live PostgreSQL, including forced-collision and concurrency tests; an earlier Flask version ran on Cloud Run.",
+    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 83 tests, 35 against live PostgreSQL, including forced-collision and concurrency tests; an earlier Flask version ran on Cloud Run.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker'],
   },
   {
