@@ -81,7 +81,7 @@ export const projects = [
     href: 'https://github.com/alxlyn/alex-url-shortener',
     meta: 'Code on GitHub',
     dates: 'Feb - Mar 2026, Nov 2026',
-    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 83 tests, 35 against live PostgreSQL, including forced-collision and concurrency tests; an earlier Flask version ran on Cloud Run.",
+    text: "An async URL shortener where the primary key rejects a duplicate short code and the insert retries with a new one, so a collision doesn't fail the request. GitHub Actions CI runs 100 tests, 45 against live PostgreSQL, including forced-collision and concurrency tests; an earlier Flask version ran on Cloud Run.",
     stack: ['Python', 'FastAPI', 'asyncpg', 'PostgreSQL', 'Docker'],
   },
   {

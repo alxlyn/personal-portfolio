@@ -84,6 +84,11 @@
         for the first and then gets a 409. A test inspects the code and fails if any staff action on an order stops
         taking that lock.
       </p>
+      <p>
+        The real code is private, so I rebuilt this part as a small public repo,
+        <a href="https://github.com/alxlyn/order-claim">order-claim</a>. Its test races two Postgres sessions for one
+        order and checks that the second one waits for the lock, then gets a 409.
+      </p>
       <figure class="shot shot-narrow">
         <img
           src="/screens/arzan-orders.png"
